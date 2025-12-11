@@ -123,10 +123,10 @@
     "id": 9,
     "title": "Elementary School Teacher",
     "company": "Sunshine Academy",
-    "location": "Boston",
+    "location": "Bloemfontein",
     "salary": {
-      "min": 45000,
-      "max": 65000
+      "min": 810000,
+      "max": 1170000
     },
     "workType": "on-site",
     "industry": "education",

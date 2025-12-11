@@ -29,5 +29,39 @@ function loadTheme() {
     }
 }
 
-// Initialize theme on page load
-document.addEventListener('DOMContentLoaded', loadTheme);
+// Toggle mobile menu
+function toggleMenu() {
+    const navMenu = document.querySelector('.nav-menu');
+    const hamburger = document.querySelector('.hamburger');
+    
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+// Close menu when clicking on a link
+document.addEventListener('DOMContentLoaded', function() {
+    loadTheme();
+    
+    // Add click listeners to nav links to close menu
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const navMenu = document.querySelector('.nav-menu');
+        const hamburger = document.querySelector('.hamburger');
+        const headerControls = document.querySelector('.header-controls');
+        
+        if (!headerControls.contains(e.target) && navMenu.classList.contains('active')) {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        }
+    });
+});

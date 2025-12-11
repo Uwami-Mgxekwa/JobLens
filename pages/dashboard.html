@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobLens - Dashboard</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="dashboard-page">
+    <header>
+        <div class="logo">
+            <img src="assets/logo.png" alt="Brelinx Logo">
+        </div>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="results.html">Browse Jobs</a>
+            <a href="dashboard.html" class="active">Dashboard</a>
+        </nav>
+    </header>
+
+    <main class="dashboard-content">
+        <h1>My Dashboard</h1>
+
+        <section class="dashboard-section saved-jobs-section">
+            <div class="section-header">
+                <h2>Saved Jobs</h2>
+                <span class="count" id="savedCount">0</span>
+            </div>
+            <div class="saved-jobs-list" id="savedJobsList">
+                <p class="empty-state">No saved jobs yet. Browse jobs and save your favorites!</p>
+            </div>
+        </section>
+
+        <section class="dashboard-section alerts-section">
+            <div class="section-header">
+                <h2>Job Alerts</h2>
+            </div>
+            <div class="alerts-container">
+                <div class="alert-item">
+                    <div class="alert-info">
+                        <h3>Remote Design Jobs</h3>
+                        <p>Get notified when remote design jobs are posted</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="alertRemoteDesign">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="alert-item">
+                    <div class="alert-info">
+                        <h3>High Match Jobs (85%+)</h3>
+                        <p>Get notified when jobs with 85%+ match are available</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="alertHighMatch">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="alert-item">
+                    <div class="alert-info">
+                        <h3>New Jobs in Your Skills</h3>
+                        <p>Get notified when jobs matching your skills are posted</p>
+                    </div>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="alertSkills">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section class="dashboard-section preferences-section">
+            <div class="section-header">
+                <h2>Your Preferences</h2>
+            </div>
+            <div class="preferences-display" id="preferencesDisplay">
+                <p class="empty-state">No preferences set. Take the questionnaire to get started!</p>
+            </div>
+            <a href="questionnaire.html" class="btn-edit-preferences">Edit Preferences</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>Developed and Maintained by <strong>brelinx.com</strong></p>
+    </footer>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

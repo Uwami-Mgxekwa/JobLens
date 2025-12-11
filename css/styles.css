@@ -1198,8 +1198,18 @@ footer a:hover {
         justify-content: space-between;
     }
     
+    .header-buttons {
+        gap: 1.25rem;
+        order: 2;
+    }
+    
     .hamburger {
         display: flex;
+        order: 2;
+    }
+    
+    .theme-toggle {
+        order: 1;
     }
     
     .nav-menu {
@@ -1275,8 +1285,20 @@ footer a:hover {
         justify-content: space-between;
     }
     
+    .header-buttons {
+        gap: 1rem;
+        order: 2;
+    }
+    
     .hamburger {
         display: flex;
+        order: 2;
+    }
+    
+    .theme-toggle {
+        min-width: 45px;
+        padding: 0.4rem;
+        order: 1;
     }
     
     .nav-menu {
@@ -1311,11 +1333,6 @@ footer a:hover {
     .nav-menu a:hover {
         background-color: var(--bg-secondary);
         transform: none;
-    }
-    
-    .theme-toggle {
-        min-width: 45px;
-        padding: 0.4rem;
     }
     
     .beta-badge {

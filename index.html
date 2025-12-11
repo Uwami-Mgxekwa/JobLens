@@ -20,14 +20,21 @@
             <span class="beta-badge">BETA</span>
         </div>
         <div class="header-controls">
-            <nav>
+            <nav class="nav-menu">
                 <a href="pages/about.html">About</a>
                 <a href="pages/results.html">Browse Jobs</a>
                 <a href="pages/dashboard.html">Dashboard</a>
             </nav>
-            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <span class="theme-icon">◐</span>
-            </button>
+            <div class="header-buttons">
+                <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                    <span class="theme-icon">◐</span>
+                </button>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle menu">
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+            </div>
         </div>
     </header>
 

@@ -63,27 +63,20 @@ header {
 }
 
 .logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.logo-img {
-    height: 40px;
-    width: auto;
-    max-width: 200px;
-    object-fit: contain;
-    transition: all 0.3s ease;
+.logo .brand-text {
+    color: var(--text-primary);
 }
 
-/* Ensure logo works on all platforms */
-.logo-img {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    -webkit-touch-callout: none;
-    -webkit-tap-highlight-color: transparent;
+.logo .dot {
+    color: var(--neon-green);
 }
 
 .beta-badge {

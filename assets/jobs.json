@@ -53,7 +53,7 @@
     "workType": "hybrid",
     "industry": "technology",
     "skills": ["product strategy", "agile", "user stories", "roadmapping", "communication"],
-    "description": "Lead product development from concept to launch, working with cross-functional teams.",
+    "description": "Lead product development from concept to launch, working with cross-functional teams. Competitive salary package available.",
     "link": "https://example.com/jobs/product-manager"
   },
   {
@@ -77,8 +77,8 @@
     "company": "WebWorks LLC",
     "location": "Remote",
     "salary": {
-      "min": 1620000,
-      "max": 2250000
+      "min": 135000,
+      "max": 187500
     },
     "workType": "remote",
     "industry": "technology",
@@ -91,14 +91,11 @@
     "title": "Registered Nurse",
     "company": "City Hospital",
     "location": "Port Elizabeth",
-    "salary": {
-      "min": 1080000,
-      "max": 1530000
-    },
+    "salary": null,
     "workType": "on-site",
     "industry": "healthcare",
     "skills": ["patient care", "medical procedures", "healthcare software", "communication"],
-    "description": "Provide compassionate care to patients in a fast-paced hospital environment.",
+    "description": "Provide compassionate care to patients in a fast-paced hospital environment. Excellent benefits package.",
     "link": "https://example.com/jobs/registered-nurse"
   },
   {
@@ -107,8 +104,8 @@
     "company": "Capital Investments",
     "location": "Johannesburg",
     "salary": {
-      "min": 1350000,
-      "max": 1890000
+      "min": 112500,
+      "max": 157500
     },
     "workType": "on-site",
     "industry": "finance",
@@ -122,8 +119,8 @@
     "company": "Sunshine Academy",
     "location": "Bloemfontein",
     "salary": {
-      "min": 810000,
-      "max": 1170000
+      "min": 67500,
+      "max": 97500
     },
     "workType": "on-site",
     "industry": "education",
@@ -137,8 +134,8 @@
     "company": "Cloud Systems Inc",
     "location": "Cape Town",
     "salary": {
-      "min": 1710000,
-      "max": 2430000
+      "min": 142500,
+      "max": 202500
     },
     "workType": "remote",
     "industry": "technology",
@@ -152,8 +149,8 @@
     "company": "Media Group",
     "location": "Remote",
     "salary": {
-      "min": 900000,
-      "max": 1260000
+      "min": 75000,
+      "max": 105000
     },
     "workType": "remote",
     "industry": "marketing",
@@ -166,14 +163,11 @@
     "title": "Sales Representative",
     "company": "SalesPro Solutions",
     "location": "East London",
-    "salary": {
-      "min": 990000,
-      "max": 1440000
-    },
+    "salary": null,
     "workType": "hybrid",
     "industry": "sales",
     "skills": ["sales strategy", "crm software", "negotiation", "communication", "lead generation"],
-    "description": "Drive sales growth and build lasting relationships with clients.",
+    "description": "Drive sales growth and build lasting relationships with clients. Commission-based compensation with excellent earning potential.",
     "link": "https://example.com/jobs/sales-rep"
   },
   {
@@ -182,8 +176,8 @@
     "company": "AppWorks Studio",
     "location": "Remote",
     "salary": {
-      "min": 1530000,
-      "max": 2070000
+      "min": 127500,
+      "max": 172500
     },
     "workType": "remote",
     "industry": "technology",
@@ -197,8 +191,8 @@
     "company": "Visual Arts Co",
     "location": "Stellenbosch",
     "salary": {
-      "min": 990000,
-      "max": 1350000
+      "min": 82500,
+      "max": 112500
     },
     "workType": "hybrid",
     "industry": "design",
@@ -212,8 +206,8 @@
     "company": "SecureNet Systems",
     "location": "Sandton",
     "salary": {
-      "min": 1620000,
-      "max": 2250000
+      "min": 135000,
+      "max": 187500
     },
     "workType": "on-site",
     "industry": "technology",
@@ -226,14 +220,11 @@
     "title": "Physical Therapist",
     "company": "Wellness Clinic",
     "location": "Pietermaritzburg",
-    "salary": {
-      "min": 1260000,
-      "max": 1710000
-    },
+    "salary": null,
     "workType": "on-site",
     "industry": "healthcare",
     "skills": ["rehabilitation", "patient assessment", "treatment planning", "exercise therapy"],
-    "description": "Help patients recover from injuries and improve their physical function.",
+    "description": "Help patients recover from injuries and improve their physical function. Competitive package based on experience.",
     "link": "https://example.com/jobs/physical-therapist"
   },
   {
@@ -242,8 +233,8 @@
     "company": "People First Inc",
     "location": "Remote",
     "salary": {
-      "min": 1350000,
-      "max": 1800000
+      "min": 112500,
+      "max": 150000
     },
     "workType": "remote",
     "industry": "technology",
@@ -257,8 +248,8 @@
     "company": "Engineering Solutions",
     "location": "Germiston",
     "salary": {
-      "min": 1440000,
-      "max": 1980000
+      "min": 120000,
+      "max": 165000
     },
     "workType": "on-site",
     "industry": "engineering",
@@ -272,8 +263,8 @@
     "company": "Digital Brands",
     "location": "Remote",
     "salary": {
-      "min": 1080000,
-      "max": 1530000
+      "min": 90000,
+      "max": 127500
     },
     "workType": "remote",
     "industry": "marketing",
@@ -287,8 +278,8 @@
     "company": "Consulting Partners",
     "location": "Centurion",
     "salary": {
-      "min": 1260000,
-      "max": 1710000
+      "min": 105000,
+      "max": 142500
     },
     "workType": "hybrid",
     "industry": "finance",

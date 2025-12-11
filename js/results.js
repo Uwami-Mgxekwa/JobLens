@@ -166,7 +166,7 @@ function createJobCard(job) {
                 </div>
                 <div class="job-detail">
                     <span class="job-detail-icon">💰</span>
-                    <span>R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}</span>
+                    <span>${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</span>
                 </div>
                 <div class="job-detail">
                     <span class="job-detail-icon">💼</span>

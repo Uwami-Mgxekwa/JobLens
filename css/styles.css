@@ -1330,6 +1330,7 @@ footer a:hover {
     .brelinx-logo-large {
         -webkit-touch-callout: none;
         -webkit-user-select: none;
+        user-select: none;
     }
     
     /* Prevent iOS zoom on form inputs */

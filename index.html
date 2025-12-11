@@ -5,11 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JobLens - See the jobs meant for you</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="landing-page">
     <header>
         <div class="logo">
             <span class="brand-text">JobLens by Brelinx</span><span class="dot">.</span>
+        </div>
+        <div class="header-controls">
+            <nav>
+                <a href="pages/about.html">About</a>
+                <a href="pages/results.html">Browse Jobs</a>
+                <a href="pages/dashboard.html">Dashboard</a>
+            </nav>
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <span class="theme-icon">🌙</span>
+            </button>
         </div>
     </header>
 
@@ -17,13 +30,68 @@
         <div class="hero-section">
             <h1 class="brand-name">JobLens</h1>
             <p class="tagline">See the jobs meant for you.</p>
-            <p class="intro">Discover jobs tailored to your skills and interests.</p>
-            <a href="pages/questionnaire.html" class="cta-button">Start Questionnaire</a>
+            <p class="intro">Discover your perfect career match with our intelligent job matching platform. We analyze your skills, interests, and preferences to connect you with opportunities that truly fit.</p>
+            
+            <div class="hero-features">
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3 class="feature-title">Smart Matching</h3>
+                    <p class="feature-description">Our AI-powered algorithm analyzes your profile to find jobs with the highest compatibility scores.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚡</span>
+                    <h3 class="feature-title">Instant Results</h3>
+                    <p class="feature-description">Get personalized job recommendations in seconds, not hours. Start your career journey today.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🚀</span>
+                    <h3 class="feature-title">Career Growth</h3>
+                    <p class="feature-description">Find opportunities that align with your career goals and help you grow professionally.</p>
+                </div>
+            </div>
+            
+            <a href="pages/questionnaire.html" class="cta-button">Start Your Journey</a>
         </div>
     </main>
 
     <footer>
         <p>Developed and Maintained by <strong>brelinx.com</strong></p>
     </footer>
+
+    <script>
+        // Theme toggle functionality
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle .theme-icon');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Load saved theme
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme');
+            const html = document.documentElement;
+            const themeToggle = document.querySelector('.theme-toggle .theme-icon');
+            
+            if (savedTheme === 'dark') {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+            } else {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+            }
+        }
+
+        // Initialize theme on page load
+        document.addEventListener('DOMContentLoaded', loadTheme);
+    </script>
 </body>
 </html>

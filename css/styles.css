@@ -207,15 +207,15 @@ footer strong {
 
 .btn-prev,
 .btn-reset {
-    background-color: var(--white);
-    color: var(--black);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     padding: 1rem 2rem;
-    border: 2px solid var(--border-gray);
-    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 .btn-prev:hover,
@@ -385,7 +385,7 @@ footer strong {
 
 /* ===== QUESTIONNAIRE PAGE ===== */
 .questionnaire-page {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
 }
 
 .questionnaire-content {
@@ -398,7 +398,7 @@ footer strong {
 .form-container h1 {
     text-align: center;
     margin-bottom: 2rem;
-    color: var(--black);
+    color: var(--text-primary);
 }
 
 .progress-bar {

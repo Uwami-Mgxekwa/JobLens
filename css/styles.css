@@ -1223,25 +1223,50 @@ footer a:hover {
     
     header {
         padding: 0.75rem 1rem;
-        flex-direction: column;
-        gap: 0.75rem;
+        position: relative;
     }
     
     .header-controls {
         width: 100%;
         justify-content: space-between;
-        flex-wrap: wrap;
     }
     
-    nav {
-        gap: 0.75rem;
-        flex-wrap: wrap;
-        justify-content: center;
+    .hamburger {
+        display: flex;
     }
     
-    nav a {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-primary);
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px var(--shadow);
+        flex-direction: column;
+        gap: 0;
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu a {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu a:hover {
+        background-color: var(--bg-secondary);
+        transform: none;
     }
     
     .theme-toggle {

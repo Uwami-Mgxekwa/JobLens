@@ -5,8 +5,8 @@
     "company": "TechVision Inc",
     "location": "Remote",
     "salary": {
-      "min": 1440000,
-      "max": 2160000
+      "min": 120000,
+      "max": 180000
     },
     "workType": "remote",
     "industry": "technology",
@@ -20,8 +20,8 @@
     "company": "Creative Studios",
     "location": "Cape Town",
     "salary": {
-      "min": 1260000,
-      "max": 1710000
+      "min": 105000,
+      "max": 142500
     },
     "workType": "hybrid",
     "industry": "design",
@@ -35,8 +35,8 @@
     "company": "Analytics Pro",
     "location": "Johannesburg",
     "salary": {
-      "min": 1800000,
-      "max": 2520000
+      "min": 150000,
+      "max": 210000
     },
     "workType": "on-site",
     "industry": "technology",
@@ -49,10 +49,7 @@
     "title": "Product Manager",
     "company": "Innovation Labs",
     "location": "Durban",
-    "salary": {
-      "min": 1710000,
-      "max": 2340000
-    },
+    "salary": null,
     "workType": "hybrid",
     "industry": "technology",
     "skills": ["product strategy", "agile", "user stories", "roadmapping", "communication"],

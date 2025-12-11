@@ -8,52 +8,108 @@
 :root {
     --primary-green: #2ecc71;
     --neon-green: #39ff14;
-    --black: #000000;
-    --dark-gray: #1a1a1a;
-    --white: #ffffff;
-    --light-gray: #f5f5f5;
-    --text-gray: #666666;
-    --border-gray: #dddddd;
+    --accent-blue: #3498db;
+    --accent-purple: #9b59b6;
+    
+    /* Light theme (default) */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #2c3e50;
+    --text-secondary: #6c757d;
+    --text-muted: #adb5bd;
+    --border-color: #dee2e6;
+    --shadow: rgba(0, 0, 0, 0.1);
+    --shadow-hover: rgba(0, 0, 0, 0.15);
+}
+
+[data-theme="dark"] {
+    /* Dark theme */
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #e9ecef;
+    --text-muted: #adb5bd;
+    --border-color: #495057;
+    --shadow: rgba(0, 0, 0, 0.3);
+    --shadow-hover: rgba(0, 0, 0, 0.4);
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--black);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
     line-height: 1.6;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* ===== HEADER ===== */
 header {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     padding: 1rem 2rem;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 20px var(--shadow);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--black);
+    color: var(--text-primary);
 }
 
 .logo .brand-text {
-    color: var(--black);
+    color: var(--text-primary);
 }
 
 .logo .dot {
     color: var(--neon-green);
 }
 
-/* Logo styling for dark backgrounds */
-.landing-page .logo .brand-text,
-.results-page .logo .brand-text,
-.about-page .logo .brand-text {
-    color: var(--white);
+/* Theme Toggle Button */
+.theme-toggle {
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 50px;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    min-width: 60px;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background: var(--primary-green);
+    border-color: var(--primary-green);
+    transform: scale(1.05);
+}
+
+.theme-toggle:hover .theme-icon {
+    transform: rotate(180deg);
+}
+
+.theme-icon {
+    transition: transform 0.3s ease;
+}
+
+.header-controls {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
 nav {

@@ -5,8 +5,8 @@
     "company": "TechVision Inc",
     "location": "Remote",
     "salary": {
-      "min": 80000,
-      "max": 120000
+      "min": 1440000,
+      "max": 2160000
     },
     "workType": "remote",
     "industry": "technology",

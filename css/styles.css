@@ -668,7 +668,7 @@ footer strong {
 }
 
 .btn-unsave {
-    background-color: var(--text-gray);
+    background-color: var(--text-secondary);
 }
 
 .btn-view {
@@ -1017,12 +1017,24 @@ footer strong {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
-    .brand-name {
-        font-size: 2.5rem;
+    header {
+        padding: 1rem;
+        flex-direction: column;
+        gap: 1rem;
     }
     
-    .tagline {
-        font-size: 1.3rem;
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    nav {
+        gap: 1rem;
+    }
+    
+    .hero-features {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
     
     .jobs-grid {
@@ -1037,12 +1049,15 @@ footer strong {
         flex-direction: column;
     }
     
-    nav {
-        flex-direction: column;
-        gap: 1rem;
-    }
-    
     .how-it-works {
         grid-template-columns: 1fr;
+    }
+    
+    .landing-content {
+        padding: 2rem 1rem;
+    }
+    
+    .feature-card {
+        padding: 1.5rem;
     }
 }

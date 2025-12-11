@@ -1066,15 +1066,18 @@ footer a:hover {
 }
 
 .brelinx-logo-large {
-    height: 120px;
-    width: auto;
-    max-width: 400px;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: 2rem;
-    object-fit: contain;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+    display: block;
+}
+
+.brelinx-logo-large .brand-text {
+    color: var(--text-primary);
+}
+
+.brelinx-logo-large .dot {
+    color: var(--neon-green);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

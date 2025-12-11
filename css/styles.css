@@ -226,15 +226,15 @@ footer strong {
 }
 
 .btn-reset-filters {
-    background-color: var(--white);
-    color: var(--black);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     padding: 0.75rem 1.5rem;
-    border: 2px solid var(--border-gray);
-    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
 }
 
 /* ===== LANDING PAGE ===== */
@@ -911,12 +911,15 @@ footer strong {
 .about-hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--neon-green);
+    background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .about-hero .tagline {
     font-size: 1.5rem;
-    color: var(--primary-green);
+    color: var(--text-secondary);
 }
 
 .about-section {
@@ -932,7 +935,7 @@ footer strong {
 .about-section p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: var(--light-gray);
+    color: var(--text-secondary);
     margin-bottom: 1rem;
 }
 
@@ -943,7 +946,7 @@ footer strong {
 
 .about-section li {
     margin-bottom: 1rem;
-    color: var(--light-gray);
+    color: var(--text-secondary);
 }
 
 .how-it-works {
@@ -956,8 +959,9 @@ footer strong {
 .step {
     text-align: center;
     padding: 2rem;
-    background-color: var(--dark-gray);
-    border-radius: 10px;
+    background-color: var(--bg-secondary);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
 }
 
 .step-number {
@@ -977,18 +981,19 @@ footer strong {
 .step h3 {
     font-size: 1.3rem;
     margin-bottom: 1rem;
-    color: var(--white);
+    color: var(--text-primary);
 }
 
 .step p {
     font-size: 1rem;
-    color: var(--light-gray);
+    color: var(--text-secondary);
 }
 
 .brelinx-section {
-    background-color: var(--dark-gray);
+    background-color: var(--bg-secondary);
     padding: 3rem;
-    border-radius: 10px;
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
 }
 
 .brelinx-info {
@@ -1003,7 +1008,7 @@ footer strong {
 }
 
 .brelinx-logo-large .brand-text {
-    color: var(--white);
+    color: var(--text-primary);
 }
 
 .brelinx-logo-large .dot {

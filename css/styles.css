@@ -118,24 +118,34 @@ nav {
 }
 
 nav a {
-    color: var(--black);
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    position: relative;
 }
 
-nav a:hover,
+nav a:hover {
+    color: var(--primary-green);
+    background: var(--bg-secondary);
+    transform: translateY(-2px);
+}
+
 nav a.active {
     color: var(--primary-green);
+    background: var(--bg-secondary);
 }
 
 /* ===== FOOTER ===== */
 footer {
-    background-color: var(--dark-gray);
-    color: var(--white);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
     text-align: center;
     padding: 2rem;
     margin-top: auto;
+    border-top: 1px solid var(--border-color);
 }
 
 footer strong {

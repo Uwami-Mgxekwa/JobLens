@@ -1084,12 +1084,12 @@ footer a:hover {
 
 /* Large Desktop (1200px and up) */
 @media (min-width: 1200px) {
-    .logo-img {
-        height: 45px;
+    .logo {
+        font-size: 1.7rem;
     }
     
     .brelinx-logo-large {
-        height: 140px;
+        font-size: 3.5rem;
     }
     
     .landing-content {
@@ -1103,23 +1103,23 @@ footer a:hover {
 
 /* Desktop (992px to 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
-    .logo-img {
-        height: 42px;
+    .logo {
+        font-size: 1.6rem;
     }
     
     .brelinx-logo-large {
-        height: 130px;
+        font-size: 3.2rem;
     }
 }
 
 /* Tablet (768px to 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
-    .logo-img {
-        height: 38px;
+    .logo {
+        font-size: 1.4rem;
     }
     
     .brelinx-logo-large {
-        height: 110px;
+        font-size: 2.8rem;
     }
     
     .hero-features {

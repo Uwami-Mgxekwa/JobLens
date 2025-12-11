@@ -503,16 +503,8 @@ footer strong {
 
 /* ===== RESULTS PAGE ===== */
 .results-page {
-    background-color: var(--black);
-    color: var(--white);
-}
-
-.results-page header {
-    background-color: var(--dark-gray);
-}
-
-.results-page nav a {
-    color: var(--white);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .results-content {
@@ -530,19 +522,20 @@ footer strong {
 .results-header h1 {
     font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    color: var(--neon-green);
+    color: var(--text-primary);
 }
 
 .results-count {
     font-size: 1.2rem;
-    color: var(--light-gray);
+    color: var(--text-secondary);
 }
 
 .filters-section {
-    background-color: var(--dark-gray);
+    background-color: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 16px;
     margin-bottom: 3rem;
+    border: 1px solid var(--border-color);
 }
 
 .filters-section h3 {

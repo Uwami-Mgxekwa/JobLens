@@ -585,12 +585,14 @@ footer strong {
 }
 
 .job-card {
-    background-color: var(--white);
-    color: var(--black);
-    border-radius: 10px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    border-radius: 16px;
     padding: 1.5rem;
     position: relative;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 12px var(--shadow);
 }
 
 .job-card:hover {

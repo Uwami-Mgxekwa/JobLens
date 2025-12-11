@@ -185,8 +185,8 @@
     "company": "AppWorks Studio",
     "location": "Remote",
     "salary": {
-      "min": 85000,
-      "max": 115000
+      "min": 1530000,
+      "max": 2070000
     },
     "workType": "remote",
     "industry": "technology",
@@ -198,10 +198,10 @@
     "id": 14,
     "title": "Graphic Designer",
     "company": "Visual Arts Co",
-    "location": "Portland",
+    "location": "Stellenbosch",
     "salary": {
-      "min": 55000,
-      "max": 75000
+      "min": 990000,
+      "max": 1350000
     },
     "workType": "hybrid",
     "industry": "design",
@@ -213,10 +213,10 @@
     "id": 15,
     "title": "Cybersecurity Analyst",
     "company": "SecureNet Systems",
-    "location": "Washington DC",
+    "location": "Sandton",
     "salary": {
-      "min": 90000,
-      "max": 125000
+      "min": 1620000,
+      "max": 2250000
     },
     "workType": "on-site",
     "industry": "technology",
@@ -228,10 +228,10 @@
     "id": 16,
     "title": "Physical Therapist",
     "company": "Wellness Clinic",
-    "location": "Denver",
+    "location": "Pietermaritzburg",
     "salary": {
-      "min": 70000,
-      "max": 95000
+      "min": 1260000,
+      "max": 1710000
     },
     "workType": "on-site",
     "industry": "healthcare",
@@ -245,8 +245,8 @@
     "company": "People First Inc",
     "location": "Remote",
     "salary": {
-      "min": 75000,
-      "max": 100000
+      "min": 1350000,
+      "max": 1800000
     },
     "workType": "remote",
     "industry": "technology",
@@ -258,10 +258,10 @@
     "id": 18,
     "title": "Mechanical Engineer",
     "company": "Engineering Solutions",
-    "location": "Detroit",
+    "location": "Germiston",
     "salary": {
-      "min": 80000,
-      "max": 110000
+      "min": 1440000,
+      "max": 1980000
     },
     "workType": "on-site",
     "industry": "engineering",
@@ -275,8 +275,8 @@
     "company": "Digital Brands",
     "location": "Remote",
     "salary": {
-      "min": 60000,
-      "max": 85000
+      "min": 1080000,
+      "max": 1530000
     },
     "workType": "remote",
     "industry": "marketing",
@@ -288,10 +288,10 @@
     "id": 20,
     "title": "Business Analyst",
     "company": "Consulting Partners",
-    "location": "Atlanta",
+    "location": "Centurion",
     "salary": {
-      "min": 70000,
-      "max": 95000
+      "min": 1260000,
+      "max": 1710000
     },
     "workType": "hybrid",
     "industry": "finance",

@@ -34,7 +34,7 @@ function displaySavedJobs() {
             <div class="saved-job-info">
                 <h3>${job.title}</h3>
                 <p><strong>${job.company}</strong></p>
-                <p>📍 ${job.location} | 💼 ${job.workType} | 💰 $${job.salary.min.toLocaleString()} - $${job.salary.max.toLocaleString()}</p>
+                <p>📍 ${job.location} | 💼 ${job.workType} | 💰 R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}</p>
             </div>
             <div class="saved-job-actions">
                 <a href="${job.link}" target="_blank" class="btn-view">View</a>
@@ -78,7 +78,7 @@ function displayPreferences() {
         </div>
         <div class="preference-item">
             <strong>Salary Range:</strong>
-            <span>$${userPreferences.salaryRange.min.toLocaleString()} - $${userPreferences.salaryRange.max.toLocaleString()}</span>
+            <span>R${userPreferences.salaryRange.min.toLocaleString()} - R${userPreferences.salaryRange.max.toLocaleString()}</span>
         </div>
         <div class="preference-item">
             <strong>Work Type:</strong>

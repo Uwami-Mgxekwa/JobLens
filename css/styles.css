@@ -558,18 +558,24 @@ footer strong {
 .filter-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: var(--white);
+    color: var(--text-primary);
     font-weight: 500;
 }
 
 .filter-group select {
     width: 100%;
     padding: 0.75rem;
-    border: 2px solid var(--primary-green);
-    border-radius: 5px;
-    background-color: var(--black);
-    color: var(--white);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
     font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.filter-group select:focus {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
 }
 
 .jobs-grid {

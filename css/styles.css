@@ -871,7 +871,7 @@ footer strong {
 .preference-item {
     margin-bottom: 1rem;
     padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-gray);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .preference-item:last-child {
@@ -885,23 +885,15 @@ footer strong {
 }
 
 .empty-state {
-    color: var(--text-gray);
+    color: var(--text-secondary);
     text-align: center;
     padding: 2rem;
 }
 
 /* ===== ABOUT PAGE ===== */
 .about-page {
-    background-color: var(--black);
-    color: var(--white);
-}
-
-.about-page header {
-    background-color: var(--dark-gray);
-}
-
-.about-page nav a {
-    color: var(--white);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
 }
 
 .about-content {

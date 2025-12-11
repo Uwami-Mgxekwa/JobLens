@@ -42,7 +42,7 @@ function displaySavedJobs() {
             <div class="saved-job-info">
                 <h3>${job.title}</h3>
                 <p><strong>${job.company}</strong></p>
-                <p>📍 ${job.location} | 💼 ${job.workType} | 💰 ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</p>
+                <p>📍 ${job.location} | ● ${job.workType} | R ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</p>
             </div>
             <div class="saved-job-actions">
                 <a href="${job.link}" target="_blank" class="btn-view">View</a>

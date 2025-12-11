@@ -1175,14 +1175,12 @@ footer a:hover {
 
 /* Mobile Small (up to 575px) */
 @media (max-width: 575px) {
-    .logo-img {
-        height: 32px;
-        max-width: 150px;
+    .logo {
+        font-size: 1.2rem;
     }
     
     .brelinx-logo-large {
-        height: 80px;
-        max-width: 250px;
+        font-size: 2.2rem;
     }
     
     header {
@@ -1283,14 +1281,12 @@ footer a:hover {
 
 /* Extra small devices (up to 320px) */
 @media (max-width: 320px) {
-    .logo-img {
-        height: 28px;
-        max-width: 120px;
+    .logo {
+        font-size: 1.1rem;
     }
     
     .brelinx-logo-large {
-        height: 70px;
-        max-width: 200px;
+        font-size: 2rem;
     }
     
     header {
@@ -1311,37 +1307,13 @@ footer a:hover {
     }
 }
 
-/* High DPI displays (Retina, etc.) */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .logo-img,
-    .brelinx-logo-large {
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
-    }
-}
-
 /* iOS specific optimizations */
 @supports (-webkit-touch-callout: none) {
-    .logo-img,
-    .brelinx-logo-large {
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        user-select: none;
-    }
-    
     /* Prevent iOS zoom on form inputs */
     input[type="text"],
     input[type="number"],
     select {
         font-size: 16px !important;
-    }
-}
-
-/* Android specific optimizations */
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-    .logo-img,
-    .brelinx-logo-large {
-        image-rendering: -webkit-optimize-contrast;
     }
 }
 

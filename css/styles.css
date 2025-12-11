@@ -1163,28 +1163,34 @@ footer a:hover {
 /* Desktop and Tablet - Normal navigation */
 @media (min-width: 768px) {
     .hamburger {
-        display: none;
+        display: none !important;
     }
     
     .nav-menu {
         display: flex !important;
-        position: static;
-        background: none;
-        border: none;
-        box-shadow: none;
-        flex-direction: row;
-        gap: 2rem;
+        position: static !important;
+        background: none !important;
+        border: none !important;
+        box-shadow: none !important;
+        flex-direction: row !important;
+        gap: 2rem !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: auto !important;
+        max-width: none !important;
     }
     
     .nav-menu a {
-        padding: 0.5rem 1rem;
-        border: none;
-        font-size: inherit;
+        padding: 0.5rem 1rem !important;
+        border: none !important;
+        font-size: inherit !important;
+        border-bottom: none !important;
     }
     
     .nav-menu a:hover {
-        background: var(--bg-secondary);
-        transform: translateY(-2px);
+        background: var(--bg-secondary) !important;
+        transform: translateY(-2px) !important;
     }
 }
 

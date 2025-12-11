@@ -31,11 +31,20 @@ function loadTheme() {
 
 // Toggle mobile menu
 function toggleMenu() {
+    console.log('toggleMenu called'); // Debug log
     const navMenu = document.querySelector('.nav-menu');
     const hamburger = document.querySelector('.hamburger');
     
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
+    console.log('navMenu:', navMenu); // Debug log
+    console.log('hamburger:', hamburger); // Debug log
+    
+    if (navMenu && hamburger) {
+        navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        console.log('Menu toggled, active:', navMenu.classList.contains('active')); // Debug log
+    } else {
+        console.error('Could not find nav-menu or hamburger elements');
+    }
 }
 
 // Close menu when clicking on a link

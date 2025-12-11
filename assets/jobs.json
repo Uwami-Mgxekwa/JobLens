@@ -138,10 +138,10 @@
     "id": 10,
     "title": "DevOps Engineer",
     "company": "Cloud Systems Inc",
-    "location": "Seattle",
+    "location": "Cape Town",
     "salary": {
-      "min": 95000,
-      "max": 135000
+      "min": 1710000,
+      "max": 2430000
     },
     "workType": "remote",
     "industry": "technology",
@@ -155,8 +155,8 @@
     "company": "Media Group",
     "location": "Remote",
     "salary": {
-      "min": 50000,
-      "max": 70000
+      "min": 900000,
+      "max": 1260000
     },
     "workType": "remote",
     "industry": "marketing",
@@ -168,10 +168,10 @@
     "id": 12,
     "title": "Sales Representative",
     "company": "SalesPro Solutions",
-    "location": "Miami",
+    "location": "East London",
     "salary": {
-      "min": 55000,
-      "max": 80000
+      "min": 990000,
+      "max": 1440000
     },
     "workType": "hybrid",
     "industry": "sales",

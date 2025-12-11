@@ -80,8 +80,8 @@
     "company": "WebWorks LLC",
     "location": "Remote",
     "salary": {
-      "min": 90000,
-      "max": 125000
+      "min": 1620000,
+      "max": 2250000
     },
     "workType": "remote",
     "industry": "technology",
@@ -93,10 +93,10 @@
     "id": 7,
     "title": "Registered Nurse",
     "company": "City Hospital",
-    "location": "Chicago",
+    "location": "Port Elizabeth",
     "salary": {
-      "min": 60000,
-      "max": 85000
+      "min": 1080000,
+      "max": 1530000
     },
     "workType": "on-site",
     "industry": "healthcare",
@@ -108,10 +108,10 @@
     "id": 8,
     "title": "Financial Analyst",
     "company": "Capital Investments",
-    "location": "New York",
+    "location": "Johannesburg",
     "salary": {
-      "min": 75000,
-      "max": 105000
+      "min": 1350000,
+      "max": 1890000
     },
     "workType": "on-site",
     "industry": "finance",

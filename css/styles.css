@@ -1190,6 +1190,50 @@ footer a:hover {
     
     header {
         padding: 1rem 1.5rem;
+        position: relative;
+    }
+    
+    .header-controls {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .nav-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--bg-primary);
+        border-top: 1px solid var(--border-color);
+        box-shadow: 0 4px 12px var(--shadow);
+        flex-direction: column;
+        gap: 0;
+        z-index: 1000;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-menu a {
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
+        border-bottom: 1px solid var(--border-color);
+        transition: all 0.3s ease;
+    }
+    
+    .nav-menu a:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-menu a:hover {
+        background-color: var(--bg-secondary);
+        transform: none;
     }
     
     .hero-features {

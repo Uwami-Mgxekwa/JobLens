@@ -267,3 +267,4 @@ async function init() {
 
 // Start when page loads
 init();
+

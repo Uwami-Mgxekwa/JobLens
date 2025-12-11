@@ -18,10 +18,10 @@
     "id": 2,
     "title": "UX/UI Designer",
     "company": "Creative Studios",
-    "location": "New York",
+    "location": "Cape Town",
     "salary": {
-      "min": 70000,
-      "max": 95000
+      "min": 1260000,
+      "max": 1710000
     },
     "workType": "hybrid",
     "industry": "design",
@@ -33,10 +33,10 @@
     "id": 3,
     "title": "Data Scientist",
     "company": "Analytics Pro",
-    "location": "San Francisco",
+    "location": "Johannesburg",
     "salary": {
-      "min": 100000,
-      "max": 140000
+      "min": 1800000,
+      "max": 2520000
     },
     "workType": "on-site",
     "industry": "technology",
@@ -48,10 +48,10 @@
     "id": 4,
     "title": "Product Manager",
     "company": "Innovation Labs",
-    "location": "Austin",
+    "location": "Durban",
     "salary": {
-      "min": 95000,
-      "max": 130000
+      "min": 1710000,
+      "max": 2340000
     },
     "workType": "hybrid",
     "industry": "technology",
@@ -63,10 +63,10 @@
     "id": 5,
     "title": "Digital Marketing Manager",
     "company": "Brand Builders Co",
-    "location": "Los Angeles",
+    "location": "Pretoria",
     "salary": {
-      "min": 65000,
-      "max": 90000
+      "min": 1170000,
+      "max": 1620000
     },
     "workType": "hybrid",
     "industry": "marketing",

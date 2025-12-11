@@ -697,7 +697,7 @@ footer strong {
 
 /* ===== DASHBOARD PAGE ===== */
 .dashboard-page {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
 }
 
 .dashboard-content {
@@ -710,14 +710,15 @@ footer strong {
 .dashboard-content h1 {
     font-size: 2.5rem;
     margin-bottom: 2rem;
-    color: var(--black);
+    color: var(--text-primary);
 }
 
 .dashboard-section {
-    background-color: var(--light-gray);
+    background-color: var(--bg-secondary);
     padding: 2rem;
-    border-radius: 10px;
+    border-radius: 16px;
     margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
 }
 
 .section-header {
@@ -747,13 +748,14 @@ footer strong {
 }
 
 .saved-job-item {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .saved-job-info h3 {

@@ -66,6 +66,9 @@ header {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .logo .brand-text {
@@ -74,6 +77,22 @@ header {
 
 .logo .dot {
     color: var(--neon-green);
+}
+
+.beta-badge {
+    background: var(--primary-green);
+    color: white;
+    font-size: 0.6rem;
+    font-weight: 600;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    letter-spacing: 0.5px;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+}
+
+.beta-badge:hover {
+    opacity: 1;
 }
 
 /* Theme Toggle Button */
@@ -1112,5 +1131,14 @@ footer a:hover {
     .footer-buttons {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .beta-badge {
+        font-size: 0.5rem;
+        padding: 0.15rem 0.3rem;
     }
 }

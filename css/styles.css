@@ -604,12 +604,13 @@ footer strong {
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background-color: var(--neon-green);
-    color: var(--black);
+    background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+    color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 1.1rem;
+    font-size: 1rem;
+    box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
 }
 
 .job-card h3 {
@@ -619,7 +620,7 @@ footer strong {
 }
 
 .job-company {
-    color: var(--text-gray);
+    color: var(--text-secondary);
     font-weight: 600;
     margin-bottom: 1rem;
 }

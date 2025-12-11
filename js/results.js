@@ -165,15 +165,15 @@ function createJobCard(job) {
                     <span>${job.location}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">💰</span>
+                    <span class="job-detail-icon">R</span>
                     <span>${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">💼</span>
+                    <span class="job-detail-icon">●</span>
                     <span>${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">🏷️</span>
+                    <span class="job-detail-icon">#</span>
                     <span>${job.industry.charAt(0).toUpperCase() + job.industry.slice(1)}</span>
                 </div>
             </div>

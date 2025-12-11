@@ -1150,6 +1150,34 @@ footer a:hover {
     }
 }
 
+/* Desktop and Tablet - Normal navigation */
+@media (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+    
+    .nav-menu {
+        display: flex !important;
+        position: static;
+        background: none;
+        border: none;
+        box-shadow: none;
+        flex-direction: row;
+        gap: 2rem;
+    }
+    
+    .nav-menu a {
+        padding: 0.5rem 1rem;
+        border: none;
+        font-size: inherit;
+    }
+    
+    .nav-menu a:hover {
+        background: var(--bg-secondary);
+        transform: translateY(-2px);
+    }
+}
+
 /* Tablet (768px to 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
     .logo {

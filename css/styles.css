@@ -474,10 +474,11 @@ footer strong {
     display: flex;
     align-items: center;
     padding: 1rem 1.5rem;
-    border: 2px solid var(--border-gray);
-    border-radius: 5px;
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
     cursor: pointer;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    background-color: var(--bg-primary);
 }
 
 .radio-label:hover {

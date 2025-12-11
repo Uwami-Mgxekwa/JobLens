@@ -33,7 +33,7 @@ async function loadJobs() {
                 title: "Frontend Developer",
                 company: "Tech Corp",
                 location: "Remote",
-                salary: { min: 1260000, max: 1620000 },
+                salary: { min: 105000, max: 135000 },
                 workType: "remote",
                 industry: "technology",
                 skills: ["javascript", "react", "css"],
@@ -45,7 +45,7 @@ async function loadJobs() {
                 title: "UX Designer",
                 company: "Design Studio",
                 location: "Cape Town",
-                salary: { min: 1170000, max: 1530000 },
+                salary: { min: 97500, max: 127500 },
                 workType: "hybrid",
                 industry: "design",
                 skills: ["figma", "ui design", "user research"],
@@ -57,11 +57,11 @@ async function loadJobs() {
                 title: "Data Analyst",
                 company: "Analytics Inc",
                 location: "Remote",
-                salary: { min: 1080000, max: 1440000 },
+                salary: null,
                 workType: "remote",
                 industry: "technology",
                 skills: ["python", "sql", "data visualization"],
-                description: "Analyze data and provide insights",
+                description: "Analyze data and provide insights. Competitive salary package.",
                 link: "https://example.com/job3"
             },
             {
@@ -69,7 +69,7 @@ async function loadJobs() {
                 title: "Product Manager",
                 company: "Startup XYZ",
                 location: "Johannesburg",
-                salary: { min: 1620000, max: 2160000 },
+                salary: { min: 135000, max: 180000 },
                 workType: "on-site",
                 industry: "technology",
                 skills: ["product strategy", "agile", "communication"],
@@ -81,7 +81,7 @@ async function loadJobs() {
                 title: "Marketing Specialist",
                 company: "Brand Co",
                 location: "Durban",
-                salary: { min: 990000, max: 1350000 },
+                salary: { min: 82500, max: 112500 },
                 workType: "hybrid",
                 industry: "marketing",
                 skills: ["seo", "content marketing", "social media"],
@@ -131,7 +131,7 @@ function calculateMatchScore(job) {
     factors++;
     
     // Salary match (15% weight)
-    if (userPreferences.salaryRange) {
+    if (userPreferences.salaryRange && job.salary) {
         const salaryOverlap = !(job.salary.max < userPreferences.salaryRange.min || 
                                job.salary.min > userPreferences.salaryRange.max);
         if (salaryOverlap) {

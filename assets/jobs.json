@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "title": "Senior Frontend Developer",
+    "company": "TechVision Inc",
+    "location": "Remote",
+    "salary": {
+      "min": 80000,
+      "max": 120000
+    },
+    "workType": "remote",
+    "industry": "technology",
+    "skills": ["javascript", "react", "typescript", "css", "html"],
+    "description": "Join our team to build cutting-edge web applications using modern frameworks and best practices.",
+    "link": "https://example.com/jobs/frontend-developer"
+  },
+  {
+    "id": 2,
+    "title": "UX/UI Designer",
+    "company": "Creative Studios",
+    "location": "New York",
+    "salary": {
+      "min": 70000,
+      "max": 95000
+    },
+    "workType": "hybrid",
+    "industry": "design",
+    "skills": ["figma", "sketch", "user research", "prototyping", "ui design"],
+    "description": "Design beautiful and intuitive user experiences for our suite of digital products.",
+    "link": "https://example.com/jobs/ux-designer"
+  },
+  {
+    "id": 3,
+    "title": "Data Scientist",
+    "company": "Analytics Pro",
+    "location": "San Francisco",
+    "salary": {
+      "min": 100000,
+      "max": 140000
+    },
+    "workType": "on-site",
+    "industry": "technology",
+    "skills": ["python", "machine learning", "sql", "data analysis", "statistics"],
+    "description": "Leverage data to drive business decisions and build predictive models.",
+    "link": "https://example.com/jobs/data-scientist"
+  },
+  {
+    "id": 4,
+    "title": "Product Manager",
+    "company": "Innovation Labs",
+    "location": "Austin",
+    "salary": {
+      "min": 95000,
+      "max": 130000
+    },
+    "workType": "hybrid",
+    "industry": "technology",
+    "skills": ["product strategy", "agile", "user stories", "roadmapping", "communication"],
+    "description": "Lead product development from concept to launch, working with cross-functional teams.",
+    "link": "https://example.com/jobs/product-manager"
+  },
+  {
+    "id": 5,
+    "title": "Digital Marketing Manager",
+    "company": "Brand Builders Co",
+    "location": "Los Angeles",
+    "salary": {
+      "min": 65000,
+      "max": 90000
+    },
+    "workType": "hybrid",
+    "industry": "marketing",
+    "skills": ["seo", "content marketing", "google analytics", "social media", "email marketing"],
+    "description": "Drive our digital marketing strategy and grow our online presence.",
+    "link": "https://example.com/jobs/marketing-manager"
+  },
+  {
+    "id": 6,
+    "title": "Full Stack Engineer",
+    "company": "WebWorks LLC",
+    "location": "Remote",
+    "salary": {
+      "min": 90000,
+      "max": 125000
+    },
+    "workType": "remote",
+    "industry": "technology",
+    "skills": ["javascript", "node.js", "react", "mongodb", "api design"],
+    "description": "Build and maintain full-stack applications with modern technologies.",
+    "link": "https://example.com/jobs/fullstack-engineer"
+  },
+  {
+    "id": 7,
+    "title": "Registered Nurse",
+    "company": "City Hospital",
+    "location": "Chicago",
+    "salary": {
+      "min": 60000,
+      "max": 85000
+    },
+    "workType": "on-site",
+    "industry": "healthcare",
+    "skills": ["patient care", "medical procedures", "healthcare software", "communication"],
+    "description": "Provide compassionate care to patients in a fast-paced hospital environment.",
+    "link": "https://example.com/jobs/registered-nurse"
+  },
+  {
+    "id": 8,
+    "title": "Financial Analyst",
+    "company": "Capital Investments",
+    "location": "New York",
+    "salary": {
+      "min": 75000,
+      "max": 105000
+    },
+    "workType": "on-site",
+    "industry": "finance",
+    "skills": ["financial modeling", "excel", "data analysis", "reporting", "forecasting"],
+    "description": "Analyze financial data and provide insights to support investment decisions.",
+    "link": "https://example.com/jobs/financial-analyst"
+  },
+  {
+    "id": 9,
+    "title": "Elementary School Teacher",
+    "company": "Sunshine Academy",
+    "location": "Boston",
+    "salary": {
+      "min": 45000,
+      "max": 65000
+    },
+    "workType": "on-site",
+    "industry": "education",
+    "skills": ["curriculum development", "classroom management", "child development", "communication"],
+    "description": "Inspire young minds and create an engaging learning environment.",
+    "link": "https://example.com/jobs/teacher"
+  },
+  {
+    "id": 10,
+    "title": "DevOps Engineer",
+    "company": "Cloud Systems Inc",
+    "location": "Seattle",
+    "salary": {
+      "min": 95000,
+      "max": 135000
+    },
+    "workType": "remote",
+    "industry": "technology",
+    "skills": ["aws", "docker", "kubernetes", "ci/cd", "linux"],
+    "description": "Manage cloud infrastructure and automate deployment pipelines.",
+    "link": "https://example.com/jobs/devops-engineer"
+  },
+  {
+    "id": 11,
+    "title": "Content Writer",
+    "company": "Media Group",
+    "location": "Remote",
+    "salary": {
+      "min": 50000,
+      "max": 70000
+    },
+    "workType": "remote",
+    "industry": "marketing",
+    "skills": ["writing", "seo", "content strategy", "editing", "research"],
+    "description": "Create engaging content for blogs, websites, and marketing materials.",
+    "link": "https://example.com/jobs/content-writer"
+  },
+  {
+    "id": 12,
+    "title": "Sales Representative",
+    "company": "SalesPro Solutions",
+    "location": "Miami",
+    "salary": {
+      "min": 55000,
+      "max": 80000
+    },
+    "workType": "hybrid",
+    "industry": "sales",
+    "skills": ["sales strategy", "crm software", "negotiation", "communication", "lead generation"],
+    "description": "Drive sales growth and build lasting relationships with clients.",
+    "link": "https://example.com/jobs/sales-rep"
+  },
+  {
+    "id": 13,
+    "title": "Mobile App Developer",
+    "company": "AppWorks Studio",
+    "location": "Remote",
+    "salary": {
+      "min": 85000,
+      "max": 115000
+    },
+    "workType": "remote",
+    "industry": "technology",
+    "skills": ["swift", "kotlin", "react native", "mobile ui", "api integration"],
+    "description": "Develop innovative mobile applications for iOS and Android platforms.",
+    "link": "https://example.com/jobs/mobile-developer"
+  },
+  {
+    "id": 14,
+    "title": "Graphic Designer",
+    "company": "Visual Arts Co",
+    "location": "Portland",
+    "salary": {
+      "min": 55000,
+      "max": 75000
+    },
+    "workType": "hybrid",
+    "industry": "design",
+    "skills": ["adobe creative suite", "branding", "illustration", "typography", "layout design"],
+    "description": "Create stunning visual designs for print and digital media.",
+    "link": "https://example.com/jobs/graphic-designer"
+  },
+  {
+    "id": 15,
+    "title": "Cybersecurity Analyst",
+    "company": "SecureNet Systems",
+    "location": "Washington DC",
+    "salary": {
+      "min": 90000,
+      "max": 125000
+    },
+    "workType": "on-site",
+    "industry": "technology",
+    "skills": ["security protocols", "threat analysis", "penetration testing", "network security"],
+    "description": "Protect our systems and data from cyber threats and vulnerabilities.",
+    "link": "https://example.com/jobs/cybersecurity-analyst"
+  },
+  {
+    "id": 16,
+    "title": "Physical Therapist",
+    "company": "Wellness Clinic",
+    "location": "Denver",
+    "salary": {
+      "min": 70000,
+      "max": 95000
+    },
+    "workType": "on-site",
+    "industry": "healthcare",
+    "skills": ["rehabilitation", "patient assessment", "treatment planning", "exercise therapy"],
+    "description": "Help patients recover from injuries and improve their physical function.",
+    "link": "https://example.com/jobs/physical-therapist"
+  },
+  {
+    "id": 17,
+    "title": "HR Manager",
+    "company": "People First Inc",
+    "location": "Remote",
+    "salary": {
+      "min": 75000,
+      "max": 100000
+    },
+    "workType": "remote",
+    "industry": "technology",
+    "skills": ["recruitment", "employee relations", "hr policies", "performance management"],
+    "description": "Lead HR initiatives and foster a positive workplace culture.",
+    "link": "https://example.com/jobs/hr-manager"
+  },
+  {
+    "id": 18,
+    "title": "Mechanical Engineer",
+    "company": "Engineering Solutions",
+    "location": "Detroit",
+    "salary": {
+      "min": 80000,
+      "max": 110000
+    },
+    "workType": "on-site",
+    "industry": "engineering",
+    "skills": ["cad software", "product design", "prototyping", "testing", "technical documentation"],
+    "description": "Design and develop mechanical systems and components.",
+    "link": "https://example.com/jobs/mechanical-engineer"
+  },
+  {
+    "id": 19,
+    "title": "Social Media Manager",
+    "company": "Digital Brands",
+    "location": "Remote",
+    "salary": {
+      "min": 60000,
+      "max": 85000
+    },
+    "workType": "remote",
+    "industry": "marketing",
+    "skills": ["social media strategy", "content creation", "community management", "analytics"],
+    "description": "Manage social media presence and engage with our online community.",
+    "link": "https://example.com/jobs/social-media-manager"
+  },
+  {
+    "id": 20,
+    "title": "Business Analyst",
+    "company": "Consulting Partners",
+    "location": "Atlanta",
+    "salary": {
+      "min": 70000,
+      "max": 95000
+    },
+    "workType": "hybrid",
+    "industry": "finance",
+    "skills": ["requirements gathering", "process improvement", "stakeholder management", "documentation"],
+    "description": "Analyze business processes and recommend solutions for improvement.",
+    "link": "https://example.com/jobs/business-analyst"
+  }
+]

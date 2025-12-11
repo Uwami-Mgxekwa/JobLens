@@ -21,7 +21,7 @@
                 <a href="pages/dashboard.html">Dashboard</a>
             </nav>
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
-                <span class="theme-icon">🌙</span>
+                <span class="theme-icon">◐</span>
             </button>
         </div>
     </header>
@@ -70,11 +70,11 @@
             
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
+                themeToggle.textContent = '◐';
                 localStorage.setItem('theme', 'light');
             } else {
                 html.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
+                themeToggle.textContent = '◑';
                 localStorage.setItem('theme', 'dark');
             }
         }
@@ -87,10 +87,10 @@
             
             if (savedTheme === 'dark') {
                 html.setAttribute('data-theme', 'dark');
-                themeToggle.textContent = '☀️';
+                themeToggle.textContent = '◑';
             } else {
                 html.removeAttribute('data-theme');
-                themeToggle.textContent = '🌙';
+                themeToggle.textContent = '◐';
             }
         }
 

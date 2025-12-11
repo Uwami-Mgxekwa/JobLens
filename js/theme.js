@@ -5,11 +5,11 @@ function toggleTheme() {
     
     if (html.getAttribute('data-theme') === 'dark') {
         html.removeAttribute('data-theme');
-        themeToggle.textContent = '🌙';
+        themeToggle.textContent = '◐';
         localStorage.setItem('theme', 'light');
     } else {
         html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
+        themeToggle.textContent = '◑';
         localStorage.setItem('theme', 'dark');
     }
 }
@@ -22,10 +22,10 @@ function loadTheme() {
     
     if (savedTheme === 'dark') {
         html.setAttribute('data-theme', 'dark');
-        if (themeToggle) themeToggle.textContent = '☀️';
+        if (themeToggle) themeToggle.textContent = '◑';
     } else {
         html.removeAttribute('data-theme');
-        if (themeToggle) themeToggle.textContent = '🌙';
+        if (themeToggle) themeToggle.textContent = '◐';
     }
 }
 

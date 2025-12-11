@@ -63,20 +63,27 @@ header {
 }
 
 .logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--text-primary);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-.logo .brand-text {
-    color: var(--text-primary);
+.logo-img {
+    height: 40px;
+    width: auto;
+    max-width: 200px;
+    object-fit: contain;
+    transition: all 0.3s ease;
 }
 
-.logo .dot {
-    color: var(--neon-green);
+/* Ensure logo works on all platforms */
+.logo-img {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .beta-badge {
@@ -1066,18 +1073,15 @@ footer a:hover {
 }
 
 .brelinx-logo-large {
-    font-size: 3rem;
-    font-weight: 700;
+    height: 120px;
+    width: auto;
+    max-width: 400px;
     margin-bottom: 2rem;
-    display: block;
-}
-
-.brelinx-logo-large .brand-text {
-    color: var(--text-primary);
-}
-
-.brelinx-logo-large .dot {
-    color: var(--neon-green);
+    object-fit: contain;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 /* ===== RESPONSIVE DESIGN ===== */

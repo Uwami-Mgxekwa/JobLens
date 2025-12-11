@@ -1232,21 +1232,9 @@ footer a:hover {
         min-width: 0;
     }
     
-    .header-buttons {
-        gap: 1rem;
-        order: 2;
-        flex-shrink: 0;
-    }
-    
-    .hamburger {
-        display: flex;
-        order: 2;
-    }
-    
     .theme-toggle {
         min-width: 45px;
         padding: 0.4rem;
-        order: 1;
     }
     
     .beta-badge {

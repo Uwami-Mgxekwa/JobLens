@@ -247,17 +247,82 @@ function saveJob(jobId) {
     const job = allJobs.find(j => j.id === jobId);
     if (job && !savedJobs.some(j => j.id === jobId)) {
         savedJobs.push(job);
+        // Save to localStorage for persistence
+        localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
         window.savedJobs = savedJobs;
         displayJobs(filteredJobs); // Refresh display
+        
+        // Show success notification
+        showNotification(`${job.title} saved successfully!`);
     }
 }
 
 // Unsave job
 function unsaveJob(jobId) {
+    const job = savedJobs.find(j => j.id === jobId);
     savedJobs = savedJobs.filter(job => job.id !== jobId);
+    // Update localStorage
+    localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
     window.savedJobs = savedJobs;
     displayJobs(filteredJobs); // Refresh display
+    
+    if (job) {
+        showNotification(`${job.title} removed from saved jobs.`);
+    }
 }
+
+// Show notification
+function showNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        animation: slideIn 0.3s ease-out;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Add animation styles
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOut {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(400px);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
 
 // Initialize
 async function init() {

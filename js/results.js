@@ -17,8 +17,13 @@ let savedJobs = [];
 // Load jobs from JSON file
 async function loadJobs() {
     try {
+        console.log('Loading jobs from:', '../assets/jobs.json');
         const response = await fetch('../assets/jobs.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
         allJobs = await response.json();
+        console.log('Jobs loaded successfully:', allJobs.length, 'jobs');
     } catch (error) {
         console.error('Error loading jobs:', error);
         // Fallback sample data
@@ -256,8 +261,12 @@ function unsaveJob(jobId) {
 
 // Initialize
 async function init() {
+    console.log('Initializing results page...');
+    console.log('User preferences:', userPreferences);
+    
     // Check if user has completed questionnaire
     if (!userPreferences) {
+        console.log('No user preferences found');
         if (confirm('You haven\'t completed the questionnaire yet. Would you like to do that now?')) {
             window.location.href = 'questionnaire.html';
             return;

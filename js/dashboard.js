@@ -56,9 +56,13 @@ function displaySavedJobs() {
 function removeJob(jobId) {
     const index = savedJobs.findIndex(job => job.id === jobId);
     if (index > -1) {
+        const job = savedJobs[index];
         savedJobs.splice(index, 1);
+        // Update localStorage
+        localStorage.setItem('savedJobs', JSON.stringify(savedJobs));
         window.savedJobs = savedJobs;
         displaySavedJobs();
+        showNotification(`${job.title} removed from saved jobs.`);
     }
 }
 
@@ -86,7 +90,7 @@ function displayPreferences() {
         </div>
         <div class="preference-item">
             <strong>Salary Range:</strong>
-            <span>R${userPreferences.salaryRange.min.toLocaleString()} - R${userPreferences.salaryRange.max.toLocaleString()}</span>
+            <span>R${userPreferences.salaryRange.min.toLocaleString()} - R${userPreferences.salaryRange.max.toLocaleString()}/month</span>
         </div>
         <div class="preference-item">
             <strong>Work Type:</strong>

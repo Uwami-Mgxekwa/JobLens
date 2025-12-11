@@ -1,5 +1,13 @@
-// Get data
-const savedJobs = window.savedJobs || [];
+// Get saved jobs from localStorage
+let savedJobs = [];
+try {
+    const stored = localStorage.getItem('savedJobs');
+    savedJobs = stored ? JSON.parse(stored) : [];
+} catch (error) {
+    console.error('Error loading saved jobs:', error);
+    savedJobs = [];
+}
+window.savedJobs = savedJobs;
 
 // Get user preferences from localStorage
 let userPreferences = null;
@@ -34,7 +42,7 @@ function displaySavedJobs() {
             <div class="saved-job-info">
                 <h3>${job.title}</h3>
                 <p><strong>${job.company}</strong></p>
-                <p>📍 ${job.location} | 💼 ${job.workType} | 💰 R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}</p>
+                <p>📍 ${job.location} | 💼 ${job.workType} | 💰 ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</p>
             </div>
             <div class="saved-job-actions">
                 <a href="${job.link}" target="_blank" class="btn-view">View</a>

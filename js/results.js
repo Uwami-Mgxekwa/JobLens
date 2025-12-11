@@ -338,8 +338,15 @@ async function init() {
         }
     }
     
-    // Load saved jobs
-    savedJobs = window.savedJobs || [];
+    // Load saved jobs from localStorage
+    try {
+        const stored = localStorage.getItem('savedJobs');
+        savedJobs = stored ? JSON.parse(stored) : [];
+    } catch (error) {
+        console.error('Error loading saved jobs:', error);
+        savedJobs = [];
+    }
+    window.savedJobs = savedJobs;
     
     // Load and display jobs
     await loadJobs();

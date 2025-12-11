@@ -129,14 +129,12 @@ header {
     display: flex;
     align-items: center;
     gap: 2rem;
-    flex: 1;
-    justify-content: space-between;
 }
 
 .header-buttons {
     display: flex;
     align-items: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
 .nav-menu {

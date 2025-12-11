@@ -636,7 +636,7 @@ footer strong {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-gray);
+    color: var(--text-secondary);
 }
 
 .job-detail-icon {

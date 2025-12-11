@@ -808,11 +808,11 @@ footer strong {
 .alert-info h3 {
     font-size: 1.2rem;
     margin-bottom: 0.5rem;
-    color: var(--black);
+    color: var(--text-primary);
 }
 
 .alert-info p {
-    color: var(--text-gray);
+    color: var(--text-secondary);
 }
 
 .toggle-switch {
@@ -835,7 +835,7 @@ footer strong {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: var(--border-gray);
+    background-color: var(--border-color);
     transition: 0.4s;
     border-radius: 34px;
 }

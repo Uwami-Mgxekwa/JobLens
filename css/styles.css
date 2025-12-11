@@ -152,6 +152,17 @@ footer strong {
     color: var(--neon-green);
 }
 
+footer a {
+    color: var(--neon-green);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+footer a:hover {
+    color: var(--primary-green);
+    text-decoration: underline;
+}
+
 /* ===== BUTTONS ===== */
 .cta-button,
 .btn-submit,
@@ -192,6 +203,39 @@ footer strong {
 .btn-submit:hover::before,
 .btn-next:hover::before {
     left: 100%;
+}
+
+.cta-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 2rem;
+}
+
+.btn-contact,
+.btn-employer {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1rem 2rem;
+    border: 2px solid var(--primary-green);
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+    min-width: 250px;
+    text-align: center;
+}
+
+.btn-contact:hover,
+.btn-employer:hover {
+    background: var(--primary-green);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
 }
 
 .cta-button:hover,

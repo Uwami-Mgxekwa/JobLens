@@ -847,7 +847,7 @@ footer strong {
     width: 26px;
     left: 4px;
     bottom: 4px;
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     transition: 0.4s;
     border-radius: 50%;
 }
@@ -861,10 +861,11 @@ footer strong {
 }
 
 .preferences-display {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
 }
 
 .preference-item {

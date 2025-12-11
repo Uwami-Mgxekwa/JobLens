@@ -159,17 +159,39 @@ footer strong {
 .btn-filter,
 .btn-edit-preferences,
 .btn-brelinx {
-    background-color: var(--primary-green);
-    color: var(--white);
-    padding: 1rem 2rem;
+    background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+    color: white;
+    padding: 1.2rem 2.5rem;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     font-size: 1.1rem;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: all 0.3s;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+}
+
+.cta-button::before,
+.btn-submit::before,
+.btn-next::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
+}
+
+.cta-button:hover::before,
+.btn-submit:hover::before,
+.btn-next:hover::before {
+    left: 100%;
 }
 
 .cta-button:hover,
@@ -178,10 +200,9 @@ footer strong {
 .btn-filter:hover,
 .btn-edit-preferences:hover,
 .btn-brelinx:hover {
-    background-color: var(--neon-green);
-    color: var(--black);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+    filter: brightness(1.1);
 }
 
 .btn-prev,

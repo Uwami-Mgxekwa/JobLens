@@ -9,7 +9,7 @@ let savedJobs = [];
 // Load jobs from JSON file
 async function loadJobs() {
     try {
-        const response = await fetch('assets/jobs.json');
+        const response = await fetch('../assets/jobs.json');
         allJobs = await response.json();
     } catch (error) {
         console.error('Error loading jobs:', error);

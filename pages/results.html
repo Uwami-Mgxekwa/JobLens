@@ -3,107 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JobLens - Questionnaire</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>JobLens - Job Results</title>
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body class="questionnaire-page">
+<body class="results-page">
     <header>
         <div class="logo">
-            <img src="assets/logo.png" alt="Brelinx Logo">
+            <img src="../assets/logo.png" alt="Brelinx Logo">
         </div>
         <nav>
-            <a href="index.html">Home</a>
+            <a href="../index.html">Home</a>
+            <a href="results.html" class="active">Browse Jobs</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="about.html">About</a>
         </nav>
     </header>
 
-    <main class="questionnaire-content">
-        <div class="form-container">
-            <h1>Tell Us About Yourself</h1>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressBar"></div>
+    <main class="results-content">
+        <div class="results-header">
+            <h1>Job Results</h1>
+            <p class="results-count">Found <span id="jobCount">0</span> jobs matching your preferences</p>
+        </div>
+
+        <div class="filters-section">
+            <h3>Filter Jobs</h3>
+            <div class="filters-container">
+                <div class="filter-group">
+                    <label for="filterIndustry">Industry</label>
+                    <select id="filterIndustry" onchange="applyFilters()">
+                        <option value="">All Industries</option>
+                        <option value="technology">Technology</option>
+                        <option value="design">Design</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="finance">Finance</option>
+                        <option value="education">Education</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="sales">Sales</option>
+                        <option value="engineering">Engineering</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterWorkType">Work Type</label>
+                    <select id="filterWorkType" onchange="applyFilters()">
+                        <option value="">All Types</option>
+                        <option value="remote">Remote</option>
+                        <option value="hybrid">Hybrid</option>
+                        <option value="on-site">On-Site</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="filterMinMatch">Minimum Match</label>
+                    <select id="filterMinMatch" onchange="applyFilters()">
+                        <option value="0">Any Match</option>
+                        <option value="50">50%+</option>
+                        <option value="70">70%+</option>
+                        <option value="85">85%+</option>
+                    </select>
+                </div>
+                <button class="btn-reset-filters" onclick="resetFilters()">Reset Filters</button>
             </div>
-            
-            <form id="preferencesForm">
-                <div class="form-step active" data-step="1">
-                    <div class="form-group">
-                        <label for="skills">Your Skills</label>
-                        <input type="text" id="skills" name="skills" placeholder="e.g., JavaScript, Project Management, Design" required>
-                        <small>Separate multiple skills with commas</small>
-                    </div>
-                    <button type="button" class="btn-next" onclick="nextStep()">Next</button>
-                </div>
+        </div>
 
-                <div class="form-step" data-step="2">
-                    <div class="form-group">
-                        <label for="interests">Your Interests</label>
-                        <select id="interests" name="interests" multiple size="5" required>
-                            <option value="technology">Technology</option>
-                            <option value="design">Design</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="finance">Finance</option>
-                            <option value="education">Education</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="sales">Sales</option>
-                            <option value="engineering">Engineering</option>
-                        </select>
-                        <small>Hold Ctrl/Cmd to select multiple</small>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>
-                        <button type="button" class="btn-next" onclick="nextStep()">Next</button>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="3">
-                    <div class="form-group">
-                        <label for="location">Preferred Location</label>
-                        <input type="text" id="location" name="location" placeholder="e.g., New York, Remote, Anywhere" required>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>
-                        <button type="button" class="btn-next" onclick="nextStep()">Next</button>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="4">
-                    <div class="form-group">
-                        <label for="minSalary">Minimum Salary ($)</label>
-                        <input type="number" id="minSalary" name="minSalary" placeholder="e.g., 50000" min="0" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="maxSalary">Maximum Salary ($)</label>
-                        <input type="number" id="maxSalary" name="maxSalary" placeholder="e.g., 100000" min="0" required>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>
-                        <button type="button" class="btn-next" onclick="nextStep()">Next</button>
-                    </div>
-                </div>
-
-                <div class="form-step" data-step="5">
-                    <div class="form-group">
-                        <label>Work Type</label>
-                        <div class="radio-group">
-                            <label class="radio-label">
-                                <input type="radio" name="workType" value="remote" required>
-                                <span>Remote</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="workType" value="hybrid">
-                                <span>Hybrid</span>
-                            </label>
-                            <label class="radio-label">
-                                <input type="radio" name="workType" value="on-site">
-                                <span>On-Site</span>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="button-group">
-                        <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>
-                        <button type="submit" class="btn-submit">Find My Jobs</button>
-                    </div>
-                </div>
-            </form>
+        <div class="jobs-container">
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Job cards will be populated by JavaScript -->
+            </div>
+            <div class="no-results" id="noResults" style="display: none;">
+                <h3>No jobs found</h3>
+                <p>Try adjusting your filters or <a href="questionnaire.html">update your preferences</a>.</p>
+            </div>
         </div>
     </main>
 
@@ -111,6 +79,6 @@
         <p>Developed and Maintained by <strong>brelinx.com</strong></p>
     </footer>
 
-    <script src="js/questionnaire.js"></script>
+    <script src="../js/results.js"></script>
 </body>
 </html>

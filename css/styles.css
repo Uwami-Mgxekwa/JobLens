@@ -35,8 +35,25 @@ header {
     align-items: center;
 }
 
-.logo img {
-    height: 50px;
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--black);
+}
+
+.logo .brand-text {
+    color: var(--black);
+}
+
+.logo .dot {
+    color: var(--neon-green);
+}
+
+/* Logo styling for dark backgrounds */
+.landing-page .logo .brand-text,
+.results-page .logo .brand-text,
+.about-page .logo .brand-text {
+    color: var(--white);
 }
 
 nav {
@@ -115,9 +132,22 @@ footer strong {
 }
 
 .btn-prev:hover,
-.btn-reset:hover {
+.btn-reset:hover,
+.btn-reset-filters:hover {
     border-color: var(--primary-green);
     color: var(--primary-green);
+}
+
+.btn-reset-filters {
+    background-color: var(--white);
+    color: var(--black);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--border-gray);
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
 }
 
 /* ===== LANDING PAGE ===== */
@@ -324,7 +354,7 @@ footer strong {
     margin-bottom: 1.5rem;
 }
 
-.filters {
+.filters-container {
     display: flex;
     gap: 1.5rem;
     flex-wrap: wrap;
@@ -772,8 +802,18 @@ footer strong {
 }
 
 .brelinx-logo-large {
-    height: 100px;
+    font-size: 3rem;
+    font-weight: 700;
     margin-bottom: 2rem;
+    display: block;
+}
+
+.brelinx-logo-large .brand-text {
+    color: var(--white);
+}
+
+.brelinx-logo-large .dot {
+    color: var(--neon-green);
 }
 
 /* ===== RESPONSIVE DESIGN ===== */
@@ -790,7 +830,7 @@ footer strong {
         grid-template-columns: 1fr;
     }
     
-    .filters {
+    .filters-container {
         flex-direction: column;
     }
     

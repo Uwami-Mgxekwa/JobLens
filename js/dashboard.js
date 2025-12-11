@@ -1,6 +1,16 @@
 // Get data
 const savedJobs = window.savedJobs || [];
-const userPreferences = window.userPreferences || null;
+
+// Get user preferences from localStorage
+let userPreferences = null;
+try {
+    const stored = localStorage.getItem('userPreferences');
+    userPreferences = stored ? JSON.parse(stored) : null;
+} catch (error) {
+    console.error('Error loading user preferences:', error);
+}
+// Fallback to window variable
+userPreferences = userPreferences || window.userPreferences || null;
 const alerts = {
     remoteDesign: false,
     highMatch: false,

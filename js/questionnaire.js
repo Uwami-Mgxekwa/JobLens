@@ -92,7 +92,8 @@ document.getElementById('preferencesForm').addEventListener('submit', function(e
         workType: workType
     };
     
-    // Save to memory (using a global variable)
+    // Save to localStorage for persistence
+    localStorage.setItem('userPreferences', JSON.stringify(preferences));
     window.userPreferences = preferences;
     
     // Redirect to results page

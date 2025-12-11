@@ -764,7 +764,7 @@ footer strong {
 }
 
 .saved-job-info p {
-    color: var(--text-gray);
+    color: var(--text-secondary);
     margin-bottom: 0.3rem;
 }
 
@@ -795,13 +795,14 @@ footer strong {
 }
 
 .alert-item {
-    background-color: var(--white);
+    background-color: var(--bg-primary);
     padding: 1.5rem;
-    border-radius: 8px;
+    border-radius: 12px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 8px var(--shadow);
+    border: 1px solid var(--border-color);
 }
 
 .alert-info h3 {

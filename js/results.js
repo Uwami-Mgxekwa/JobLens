@@ -282,7 +282,7 @@ function getFreshnessIcon(freshnessScore) {
     return '⏰';
 }
 
-// Display jobs
+// Display jobs with smart sorting
 function displayJobs(jobs) {
     const jobsGrid = document.getElementById('jobsGrid');
     const noResults = document.getElementById('noResults');
@@ -305,9 +305,18 @@ function displayJobs(jobs) {
     noResults.style.display = 'none';
     jobCount.textContent = jobs.length;
     
-    // Sort by match score
+    // Smart sorting: combine match score and freshness
     const sortedJobs = jobs.sort((a, b) => {
-        return calculateMatchScore(b) - calculateMatchScore(a);
+        const aMatchScore = calculateMatchScore(a);
+        const bMatchScore = b);
+        const aFreshness = a.freshnessScore || 50;
+        const bFreshness = b.freshnessScore || 50;
+        
+        // Weighted score: 70% match, 30% freshness
+        const aScore = (aMatchScore * 0.7) + (aFreshness * 0.3);
+        const bScore = (bMatchScore * 0.7) + (bFreshness * 0.3);
+        
+        return bScore - aScore;
     });
     
     jobsGrid.innerHTML = sortedJobs.map(job => createJobCard(job)).join('');

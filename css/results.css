@@ -91,6 +91,9 @@
     transition: all 0.3s ease;
     border: 1px solid var(--border-color);
     box-shadow: 0 4px 12px var(--shadow);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .job-card:hover {
@@ -98,23 +101,75 @@
     box-shadow: 0 12px 40px var(--shadow-hover);
 }
 
-.match-badge {
+/* Job badges container */
+.job-badges {
     position: absolute;
     top: 1rem;
     right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-end;
+}
+
+.match-badge {
     background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 20px;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 0.9rem;
     box-shadow: 0 2px 8px rgba(46, 204, 113, 0.3);
+    white-space: nowrap;
+}
+
+/* Freshness badges */
+.freshness-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.freshness-badge.fresh-hot {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    color: white;
+    animation: pulse 2s infinite;
+}
+
+.freshness-badge.fresh-new {
+    background: linear-gradient(135deg, #4ecdc4, #44a08d);
+    color: white;
+}
+
+.freshness-badge.fresh-recent {
+    background: linear-gradient(135deg, #a8edea, #fed6e3);
+    color: #333;
+}
+
+.freshness-badge.fresh-old {
+    background: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
 }
 
 .job-card h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 0.5rem;
-    margin-right: 100px;
+    margin-right: 120px;
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .job-company {

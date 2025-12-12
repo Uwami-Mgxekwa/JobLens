@@ -47,7 +47,7 @@ class JobAPI {
         }
     }
 
-    // Transform Adzuna job format to JobLens format
+    // Transform Adzuna job format to JobLens format with freshness indicators
     transformAdzunaJobs(adzunaJobs) {
         return adzunaJobs.map((job, index) => ({
             id: `adzuna_${job.id || Date.now() + index}`,
@@ -61,8 +61,52 @@ class JobAPI {
             description: this.cleanDescription(job.description || 'No description available'),
             link: job.redirect_url || '#',
             source: 'Adzuna',
-            datePosted: job.created ? new Date(job.created).toISOString() : new Date().toISOString()
+            datePosted: job.created ? new Date(job.created).toISOString() : new Date().toISOString(),
+            freshness: this.calculateFreshness(job.created),
+            freshnessScore: this.getFreshnessScore(job.created)
         }));
+    }
+
+    // Calculate job freshness indicator
+    calculateFreshness(dateCreated) {
+        if (!dateCreated) return 'Recently posted';
+        
+        const now = new Date();
+        const posted = new Date(dateCreated);
+        const diffMs = now - posted;
+        const diffHours = Math.floor(diffMs / (1000 * 60 * 60));
+        const diffDays = Math.floor(diffHours / 24);
+        
+        if (diffHours < 1) return 'Posted less than 1 hour ago';
+        if (diffHours < 24) return `Posted ${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
+        if (diffDays < 7) return `Posted ${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
+        if (diffDays < 30) {
+            const weeks = Math.floor(diffDays / 7);
+            return `Posted ${weeks} week${weeks > 1 ? 's' : ''} ago`;
+        }
+        if (diffDays < 365) {
+            const months = Math.floor(diffDays / 30);
+            return `Posted ${months} month${months > 1 ? 's' : ''} ago`;
+        }
+        
+        return 'Posted over a year ago';
+    }
+
+    // Get freshness score for sorting (higher = fresher)
+    getFreshnessScore(dateCreated) {
+        if (!dateCreated) return 50;
+        
+        const now = new Date();
+        const posted = new Date(dateCreated);
+        const diffHours = (now - posted) / (1000 * 60 * 60);
+        
+        if (diffHours < 1) return 100;
+        if (diffHours < 24) return 90;
+        if (diffHours < 72) return 80;
+        if (diffHours < 168) return 70; // 1 week
+        if (diffHours < 720) return 60; // 1 month
+        
+        return Math.max(10, 60 - Math.floor(diffHours / 720) * 10);
     }
 
     // Parse location and determine work type

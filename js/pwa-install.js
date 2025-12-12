@@ -18,7 +18,124 @@ class PWAInstaller {
             window.navigator.standalone === true) {
             this.isInstalled = true;
             console.log('✅ PWA is installed');
+            return;
         }
+        
+        // Check for iOS and show manual install instructions
+        if (this.isIOS()) {
+            this.showIOSInstallInstructions();
+        }
+    }
+
+    isIOS() {
+        return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+    }
+
+    showIOSInstallInstructions() {
+        // Show iOS-specific install instructions after a delay
+        setTimeout(() => {
+            if (!this.isInstalled && !localStorage.getItem('iosInstallDismissed')) {
+                this.createIOSInstallPrompt();
+            }
+        }, 3000);
+    }
+
+    createIOSInstallPrompt() {
+        const iosPrompt = document.createElement('div');
+        iosPrompt.id = 'iosInstallPrompt';
+        iosPrompt.className = 'ios-install-prompt';
+        iosPrompt.innerHTML = `
+            <div class="ios-install-content">
+                <div class="ios-install-header">
+                    <h4>📱 Install JobLens</h4>
+                    <button class="close-ios-install" onclick="this.parentElement.parentElement.parentElement.remove(); localStorage.setItem('iosInstallDismissed', 'true')">×</button>
+                </div>
+                <p>Add JobLens to your home screen for quick access:</p>
+                <div class="ios-steps">
+                    <div class="ios-step">1. Tap the Share button <span style="font-size: 1.2em;">⬆️</span></div>
+                    <div class="ios-step">2. Scroll down and tap "Add to Home Screen"</div>
+                    <div class="ios-step">3. Tap "Add" to confirm</div>
+                </div>
+            </div>
+        `;
+
+        // Add iOS-specific styles
+        const iosStyles = `
+            .ios-install-prompt {
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                z-index: 1000;
+                background: linear-gradient(135deg, #007AFF, #5856D6);
+                color: white;
+                border-radius: 16px;
+                box-shadow: 0 8px 30px rgba(0, 122, 255, 0.4);
+                animation: slideUp 0.3s ease-out;
+            }
+            
+            .ios-install-content {
+                padding: 1.5rem;
+            }
+            
+            .ios-install-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 1rem;
+            }
+            
+            .ios-install-header h4 {
+                margin: 0;
+                font-size: 1.2rem;
+            }
+            
+            .close-ios-install {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.25rem;
+                border-radius: 50%;
+                width: 30px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .ios-steps {
+                margin-top: 1rem;
+            }
+            
+            .ios-step {
+                margin: 0.5rem 0;
+                padding: 0.5rem;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 8px;
+                font-size: 0.9rem;
+            }
+            
+            @keyframes slideUp {
+                from { transform: translateY(100px); opacity: 0; }
+                to { transform: translateY(0); opacity: 1; }
+            }
+        `;
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = iosStyles;
+        document.head.appendChild(styleSheet);
+        
+        document.body.appendChild(iosPrompt);
+        
+        // Auto-hide after 15 seconds
+        setTimeout(() => {
+            if (iosPrompt.parentNode) {
+                iosPrompt.style.animation = 'slideDown 0.3s ease-in';
+                setTimeout(() => iosPrompt.remove(), 300);
+            }
+        }, 15000);
     }
 
     setupEventListeners() {

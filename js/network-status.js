@@ -95,23 +95,38 @@ class NetworkStatus {
     setupEventListeners() {
         // Listen for online/offline events
         window.addEventListener('online', () => {
+            const wasOffline = !this.isOnline;
             this.isOnline = true;
-            this.updateStatus();
-            this.handleOnline();
+            
+            // Only show notification if status actually changed
+            if (wasOffline) {
+                this.updateStatus();
+                this.handleOnline();
+            }
         });
 
         window.addEventListener('offline', () => {
+            const wasOnline = this.isOnline;
             this.isOnline = false;
-            this.updateStatus();
-            this.handleOffline();
+            
+            // Only show notification if status actually changed
+            if (wasOnline) {
+                this.updateStatus();
+                this.handleOffline();
+            }
         });
 
         // Listen for service worker messages
         if ('serviceWorker' in navigator) {
             navigator.serviceWorker.addEventListener('message', (event) => {
                 if (event.data.type === 'NETWORK_STATUS_UPDATE') {
+                    const previousStatus = this.isOnline;
                     this.isOnline = event.data.online;
-                    this.updateStatus();
+                    
+                    // Only update if status changed
+                    if (previousStatus !== this.isOnline) {
+                        this.updateStatus();
+                    }
                 }
             });
         }

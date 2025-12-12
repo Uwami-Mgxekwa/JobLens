@@ -61,44 +61,158 @@ function prevStep() {
     }
 }
 
-// Form submission
+// Geolocation functionality
+function initGeolocation() {
+    const currentLocationBtn = document.getElementById('currentLocationBtn');
+    const locationStatus = document.getElementById('locationStatus');
+    const locationSelect = document.getElementById('location');
+    
+    if (currentLocationBtn) {
+        currentLocationBtn.addEventListener('click', function() {
+            if (!navigator.geolocation) {
+                showLocationStatus('Geolocation is not supported by this browser.', 'error');
+                return;
+            }
+            
+            this.classList.add('loading');
+            this.innerHTML = '<span class="location-icon">⏳</span><span>Getting location...</span>';
+            
+            navigator.geolocation.getCurrentPosition(
+                async (position) => {
+                    try {
+                        const { latitude, longitude } = position.coords;
+                        const city = await getCityFromCoords(latitude, longitude);
+                        
+                        if (city) {
+                            locationSelect.value = city.toLowerCase();
+                            showLocationStatus(`✅ Location detected: ${city}`, 'success');
+                        } else {
+                            showLocationStatus('📍 Location detected, but city not recognized. Please select manually.', 'error');
+                        }
+                    } catch (error) {
+                        showLocationStatus('❌ Could not determine city. Please select manually.', 'error');
+                    }
+                    
+                    this.classList.remove('loading');
+                    this.innerHTML = '<span class="location-icon">📍</span><span>Use Current Location</span>';
+                },
+                (error) => {
+                    let message = 'Location access denied. Please select manually.';
+                    if (error.code === error.TIMEOUT) {
+                        message = 'Location request timed out. Please select manually.';
+                    }
+                    
+                    showLocationStatus(`❌ ${message}`, 'error');
+                    this.classList.remove('loading');
+                    this.innerHTML = '<span class="location-icon">📍</span><span>Use Current Location</span>';
+                },
+                { timeout: 10000, enableHighAccuracy: true }
+            );
+        });
+    }
+}
+
+function showLocationStatus(message, type) {
+    const locationStatus = document.getElementById('locationStatus');
+    if (locationStatus) {
+        locationStatus.textContent = message;
+        locationStatus.className = `location-status ${type}`;
+        locationStatus.style.display = 'block';
+        
+        setTimeout(() => {
+            locationStatus.style.display = 'none';
+        }, 5000);
+    }
+}
+
+async function getCityFromCoords(lat, lon) {
+    // Simple reverse geocoding - in production, use a proper service
+    const saCities = {
+        'johannesburg': { lat: -26.2041, lon: 28.0473 },
+        'cape town': { lat: -33.9249, lon: 18.4241 },
+        'durban': { lat: -29.8587, lon: 31.0218 },
+        'pretoria': { lat: -25.7479, lon: 28.2293 },
+        'port elizabeth': { lat: -33.9608, lon: 25.6022 },
+        'bloemfontein': { lat: -29.0852, lon: 26.1596 }
+    };
+    
+    let closestCity = null;
+    let minDistance = Infinity;
+    
+    for (const [city, coords] of Object.entries(saCity)) {
+        const distance = Math.sqrt(
+            Math.pow(lat - coords.lat, 2) + Math.pow(lon - coords.lon, 2)
+        );
+        
+        if (distance < minDistance && distance < 1) { // Within ~100km
+            minDistance = distance;
+            closestCity = city;
+        }
+    }
+    
+    return closestCity;
+}
+
+// Form submission with enhanced data collection
 document.getElementById('preferencesForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Get form values
     const skills = document.getElementById('skills').value;
-    const interestsSelect = document.getElementById('interests');
-    const interests = Array.from(interestsSelect.selectedOptions).map(option => option.value);
+    
+    // Get selected interests from checkboxes
+    const interestCheckboxes = document.querySelectorAll('input[name="interests"]:checked');
+    const interests = Array.from(interestCheckboxes).map(cb => cb.value);
+    
     const location = document.getElementById('location').value;
+    const workArrangement = document.querySelector('input[name="workArrangement"]:checked')?.value || 'no-preference';
     const minSalary = parseInt(document.getElementById('minSalary').value);
     const maxSalary = parseInt(document.getElementById('maxSalary').value);
     const workType = document.querySelector('input[name="workType"]:checked').value;
     
-    // Validate salary range
+    // Validation
+    if (interests.length === 0) {
+        alert('Please select at least one career interest');
+        return;
+    }
+    
     if (minSalary > maxSalary) {
         alert('Minimum salary cannot be greater than maximum salary');
         return;
     }
     
-    // Create preferences object
+    // Create enhanced preferences object
     const preferences = {
         skills: skills.split(',').map(skill => skill.trim().toLowerCase()),
         interests: interests,
         location: location.toLowerCase(),
+        workArrangement: workArrangement,
         salaryRange: {
             min: minSalary,
             max: maxSalary
         },
-        workType: workType
+        workType: workType,
+        completedAt: new Date().toISOString()
     };
     
     // Save to localStorage for persistence
     localStorage.setItem('userPreferences', JSON.stringify(preferences));
     window.userPreferences = preferences;
     
-    // Redirect to results page
-    window.location.href = 'results.html';
+    // Show loading state
+    const submitBtn = document.querySelector('.btn-submit');
+    const originalText = submitBtn.textContent;
+    submitBtn.textContent = 'Finding Your Perfect Jobs...';
+    submitBtn.disabled = true;
+    
+    // Redirect with delay for UX
+    setTimeout(() => {
+        window.location.href = 'results.html';
+    }, 1000);
 });
 
-// Initialize progress bar
-updateProgress();
+// Initialize everything
+document.addEventListener('DOMContentLoaded', function() {
+    updateProgress();
+    initGeolocation();
+});

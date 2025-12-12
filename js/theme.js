@@ -29,48 +29,22 @@ function loadTheme() {
     }
 }
 
-// Toggle mobile menu
+// Toggle mobile menu (legacy function - hamburger removed)
 function toggleMenu() {
-    console.log('toggleMenu called'); // Debug log
-    const navMenu = document.querySelector('.nav-menu');
-    const hamburger = document.querySelector('.hamburger');
-    
-    console.log('navMenu:', navMenu); // Debug log
-    console.log('hamburger:', hamburger); // Debug log
-    
-    if (navMenu && hamburger) {
-        navMenu.classList.toggle('active');
-        hamburger.classList.toggle('active');
-        console.log('Menu toggled, active:', navMenu.classList.contains('active')); // Debug log
-    } else {
-        console.error('Could not find nav-menu or hamburger elements');
-    }
+    // Function kept for compatibility but hamburger menu was removed
+    console.log('toggleMenu called - hamburger menu has been removed');
 }
 
-// Close menu when clicking on a link
+// Initialize theme and handle navigation
 document.addEventListener('DOMContentLoaded', function() {
     loadTheme();
     
-    // Add click listeners to nav links to close menu
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    // Add click listeners to nav links (if they exist)
+    const navLinks = document.querySelectorAll('nav a');
     navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            const navMenu = document.querySelector('.nav-menu');
-            const hamburger = document.querySelector('.hamburger');
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
+        link.addEventListener('click', (e) => {
+            // Add active state handling if needed
+            console.log('Navigation link clicked:', link.href);
         });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        const navMenu = document.querySelector('.nav-menu');
-        const hamburger = document.querySelector('.hamburger');
-        const headerControls = document.querySelector('.header-controls');
-        
-        if (!headerControls.contains(e.target) && navMenu.classList.contains('active')) {
-            navMenu.classList.remove('active');
-            hamburger.classList.remove('active');
-        }
     });
 });

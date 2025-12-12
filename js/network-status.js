@@ -166,16 +166,10 @@ class NetworkStatus {
                 loadJobs();
             }
         }
-        
-        // Show success notification
-        this.showNotification('✅ Back online! Refreshing job data...', 'success');
     }
 
     handleOffline() {
         console.log('🔴 Gone offline - using cached data...');
-        
-        // Show offline notification
-        this.showNotification('📱 You\'re offline. Showing cached jobs.', 'warning');
     }
 
     showNotification(message, type = 'info') {

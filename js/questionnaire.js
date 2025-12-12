@@ -98,15 +98,30 @@ function initGeolocation() {
                 },
                 (error) => {
                     let message = 'Location access denied. Please select manually.';
-                    if (error.code === error.TIMEOUT) {
-                        message = 'Location request timed out. Please select manually.';
+                    switch(error.code) {
+                        case error.PERMISSION_DENIED:
+                            message = 'Location access denied. Please select manually.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            message = 'Location unavailable. Please select manually.';
+                            break;
+                        case error.TIMEOUT:
+                            message = 'Location request timed out. Please select manually.';
+                            break;
+                        default:
+                            message = 'Location error occurred. Please select manually.';
+                            break;
                     }
                     
                     showLocationStatus(`❌ ${message}`, 'error');
                     this.classList.remove('loading');
                     this.innerHTML = '<span class="location-icon">📍</span><span>Use Current Location</span>';
                 },
-                { timeout: 10000, enableHighAccuracy: true }
+                { 
+                    timeout: 15000, 
+                    enableHighAccuracy: false, // Less accurate but faster
+                    maximumAge: 300000 // 5 minutes cache
+                }
             );
         });
     }

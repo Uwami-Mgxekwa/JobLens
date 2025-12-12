@@ -134,7 +134,6 @@ class AIBuddy {
                 justify-content: center;
                 box-shadow: 0 4px 20px rgba(46, 204, 113, 0.4);
                 position: relative;
-                animation: bounce 2s infinite;
             }
             
             .avatar-icon {

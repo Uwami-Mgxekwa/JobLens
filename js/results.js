@@ -335,7 +335,7 @@ function showResultsStatus(jobs) {
 }
 
 // Job sharing functionality
-function toggleShareMenu(jobId) {
+window.toggleShareMenu = function toggleShareMenu(jobId) {
     const shareMenu = document.getElementById(`shareMenu${jobId}`);
     const allShareMenus = document.querySelectorAll('.share-menu');
     
@@ -354,7 +354,7 @@ function toggleShareMenu(jobId) {
     }
 }
 
-function copyJobLink(jobId) {
+window.copyJobLink = function copyJobLink(jobId) {
     const job = allJobs.find(j => j.id == jobId);
     if (!job) return;
     
@@ -396,7 +396,7 @@ function fallbackCopyTextToClipboard(text) {
     document.body.removeChild(textArea);
 }
 
-function shareViaWhatsApp(jobId) {
+window.shareViaWhatsApp = function shareViaWhatsApp(jobId) {
     const job = allJobs.find(j => j.id == jobId);
     if (!job) return;
     
@@ -421,7 +421,7 @@ Find your perfect job match at JobLens! 🚀`;
     document.getElementById(`shareMenu${jobId}`).style.display = 'none';
 }
 
-function shareViaEmail(jobId) {
+window.shareViaEmail = function shareViaEmail(jobId) {
     const job = allJobs.find(j => j.id == jobId);
     if (!job) return;
     
@@ -560,7 +560,7 @@ function resetFilters() {
 }
 
 // Save job
-function saveJob(jobId) {
+window.saveJob = function saveJob(jobId) {
     const job = allJobs.find(j => j.id === jobId);
     if (job && !savedJobs.some(j => j.id === jobId)) {
         savedJobs.push(job);
@@ -575,7 +575,7 @@ function saveJob(jobId) {
 }
 
 // Unsave job
-function unsaveJob(jobId) {
+window.unsaveJob = function unsaveJob(jobId) {
     const job = savedJobs.find(j => j.id === jobId);
     savedJobs = savedJobs.filter(job => job.id !== jobId);
     // Update localStorage

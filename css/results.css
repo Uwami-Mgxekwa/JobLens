@@ -169,7 +169,6 @@
 .freshness-badge.fresh-hot {
     background: linear-gradient(135deg, #ff6b6b, #ff8e53);
     color: white;
-    animation: pulse 2s infinite;
 }
 
 .freshness-badge.fresh-new {

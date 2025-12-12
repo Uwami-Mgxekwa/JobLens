@@ -799,4 +799,110 @@ What skill would you like to develop first? I can suggest specific resources!`;
 
 **Conversation starters:**
 - "What trends are you seeing in [industry]?"
-- 
+- "What's the most exciting project you're working on?"
+- "How did you get started in [field]?"
+
+Want help crafting networking messages or preparing for events?`;
+        }
+        
+        // Default responses
+        const defaultResponses = [
+            `That's a great question! ${this.userName ? this.userName + ', ' : ''}I'd love to help you with that. Could you be more specific about what aspect you'd like to focus on? 🤔`,
+            
+            `Interesting! ${this.userName ? this.userName + ', ' : ''}I want to give you the best advice possible. Can you tell me more about your specific situation? 💭`,
+            
+            `I'm here to help! ${this.userName ? this.userName + ', ' : ''}While I think about that, here are some areas I'm great at:
+            
+- **Job search strategies** and application tips
+- **Resume and cover letter** optimization  
+- **Interview preparation** and practice
+- **Career planning** and goal setting
+- **Salary negotiation** techniques
+- **Networking** and relationship building
+- **Skills development** recommendations
+
+What would you like to explore? 😊`,
+            
+            `That's an important topic! ${this.userName ? this.userName + ', ' : ''}I want to make sure I give you actionable advice. Could you share more context about your current situation or specific challenges? 🎯`
+        ];
+        
+        return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
+    }
+
+    handleQuickAction(action) {
+        const actions = {
+            'job-tips': "I'd love to share some job search tips! What specific area would you like help with - finding opportunities, applications, or interview prep?",
+            'resume-help': "Let's make your resume stand out! Are you starting from scratch, updating an existing resume, or need help with a specific section?",
+            'interview-prep': "Interview preparation is so important! Are you preparing for a specific interview, or would you like general interview strategies?",
+            'salary-advice': "Salary discussions can be tricky! Are you negotiating a new offer, asking for a raise, or researching market rates?"
+        };
+        
+        const message = actions[action];
+        if (message) {
+            this.addMessage(message, 'buddy');
+            this.saveConversation();
+        }
+    }
+
+    askForName() {
+        const greeting = `Hi there! 👋 I'm your personal career buddy, and I'm here to help you succeed! 
+
+I'd love to get to know you better - what's your name? This way I can personalize our conversations and give you more targeted advice! 😊`;
+        
+        this.addMessage(greeting, 'buddy');
+        this.saveConversation();
+    }
+
+    saveConversation() {
+        try {
+            localStorage.setItem('aiBuddyConversation', JSON.stringify(this.conversationHistory));
+        } catch (error) {
+            console.error('Error saving conversation:', error);
+        }
+    }
+
+    loadConversationHistory() {
+        try {
+            const saved = localStorage.getItem('aiBuddyConversation');
+            if (saved) {
+                this.conversationHistory = JSON.parse(saved);
+                
+                // Restore messages (limit to last 10 for performance)
+                const recentMessages = this.conversationHistory.slice(-10);
+                recentMessages.forEach(msg => {
+                    if (msg.sender !== 'system') {
+                        this.addMessageToDOM(msg.content, msg.sender);
+                    }
+                });
+            }
+        } catch (error) {
+            console.error('Error loading conversation history:', error);
+        }
+    }
+
+    addMessageToDOM(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                ${this.formatMessage(content)}
+            </div>
+        `;
+        
+        // Insert before welcome message
+        const welcomeMessage = document.querySelector('.welcome-message');
+        if (welcomeMessage) {
+            this.chatMessages.insertBefore(messageDiv, welcomeMessage.nextSibling);
+        } else {
+            this.chatMessages.appendChild(messageDiv);
+        }
+    }
+}
+
+// Initialize AI Buddy when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    window.aiBuddy = new AIBuddy();
+});
+
+// Export for use in other files
+window.AIBuddy = AIBuddy;

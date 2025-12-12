@@ -52,18 +52,85 @@
 
                 <div class="form-step" data-step="2">
                     <div class="form-group">
-                        <label for="interests">Your Interests</label>
-                        <select id="interests" name="interests" multiple size="5" required>
-                            <option value="technology">Technology</option>
-                            <option value="design">Design</option>
-                            <option value="healthcare">Healthcare</option>
-                            <option value="finance">Finance</option>
-                            <option value="education">Education</option>
-                            <option value="marketing">Marketing</option>
-                            <option value="sales">Sales</option>
-                            <option value="engineering">Engineering</option>
-                        </select>
-                        <small>Hold Ctrl/Cmd to select multiple</small>
+                        <label for="interests">Your Career Interests</label>
+                        <div class="interests-grid" id="interestsGrid">
+                            <!-- Technology -->
+                            <div class="interest-category">
+                                <h4>💻 Technology</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="frontend"> Frontend Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="backend"> Backend Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="fullstack"> Full-Stack Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="mobile"> Mobile Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="devops"> DevOps & Cloud</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="ai-ml"> AI & Machine Learning</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="data-science"> Data Science</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="cybersecurity"> Cybersecurity</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="qa-testing"> QA & Testing</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="ui-ux"> UI/UX Design</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Business -->
+                            <div class="interest-category">
+                                <h4>💼 Business</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="sales"> Sales</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="marketing"> Marketing</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="business-dev"> Business Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="account-mgmt"> Account Management</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="customer-success"> Customer Success</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="operations"> Operations</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="strategy"> Strategy & Consulting</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="project-mgmt"> Project Management</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Creative -->
+                            <div class="interest-category">
+                                <h4>🎨 Creative</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="graphic-design"> Graphic Design</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="web-design"> Web Design</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="video-production"> Video Production</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="photography"> Photography</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="content-creation"> Content Creation</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="copywriting"> Copywriting</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="social-media"> Social Media</label>
+                                </div>
+                            </div>
+                            
+                            <!-- Other Industries -->
+                            <div class="interest-category">
+                                <h4>🏥 Healthcare</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="nursing"> Nursing</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="medical"> Medical</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="pharmacy"> Pharmacy</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="therapy"> Therapy</label>
+                                </div>
+                            </div>
+                            
+                            <div class="interest-category">
+                                <h4>🎓 Education</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="teaching"> Teaching</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="training"> Training & Development</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="curriculum"> Curriculum Development</label>
+                                </div>
+                            </div>
+                            
+                            <div class="interest-category">
+                                <h4>💰 Finance</h4>
+                                <div class="interest-options">
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="accounting"> Accounting</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="banking"> Banking</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="investment"> Investment</label>
+                                    <label class="interest-checkbox"><input type="checkbox" name="interests" value="insurance"> Insurance</label>
+                                </div>
+                            </div>
+                        </div>
+                        <small>Select all that interest you - the more you select, the better we can match you!</small>
                     </div>
                     <div class="button-group">
                         <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>

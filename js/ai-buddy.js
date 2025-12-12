@@ -533,4 +533,94 @@ class AIBuddy {
         this.sendButton.disabled = true;
         
         // Show typing indicator
-        this.showTypi
+        this.showTypingIndicator();
+        
+        // Generate response
+        const response = await this.generateResponse(message);
+        
+        // Remove typing indicator and add response
+        this.hideTypingIndicator();
+        this.addMessage(response, 'buddy');
+        
+        // Save conversation
+        this.saveConversation();
+    }
+
+    addMessage(content, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                ${this.formatMessage(content)}
+            </div>
+        `;
+        
+        this.chatMessages.appendChild(messageDiv);
+        this.scrollToBottom();
+        
+        // Add to conversation history
+        this.conversationHistory.push({ content, sender, timestamp: Date.now() });
+    }
+
+    formatMessage(content) {
+        // Convert markdown-like formatting
+        return content
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/\n/g, '<br>')
+            .replace(/- (.*?)(?=\n|$)/g, '<li>$1</li>')
+            .replace(/(<li>.*<\/li>)/s, '<ul>$1</ul>');
+    }
+
+    showTypingIndicator() {
+        const typingDiv = document.createElement('div');
+        typingDiv.className = 'typing-indicator';
+        typingDiv.id = 'typingIndicator';
+        typingDiv.innerHTML = `
+            <div class="typing-dots">
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            </div>
+            <span>Career Buddy is typing...</span>
+        `;
+        
+        this.chatMessages.appendChild(typingDiv);
+        this.scrollToBottom();
+    }
+
+    hideTypingIndicator() {
+        const typingIndicator = document.getElementById('typingIndicator');
+        if (typingIndicator) {
+            typingIndicator.remove();
+        }
+    }
+
+    scrollToBottom() {
+        this.chatMessages.scrollTop = this.chatMessages.scrollHeight;
+    }
+
+    async generateResponse(message) {
+        // Simulate AI thinking time
+        await new Promise(resolve => setTimeout(resolve, 1000 + Math.random() * 2000));
+        
+        const lowerMessage = message.toLowerCase();
+        
+        // Name handling
+        if (!this.userName && (lowerMessage.includes('my name is') || lowerMessage.includes("i'm ") || lowerMessage.includes("i am "))) {
+            const nameMatch = message.match(/(?:my name is|i'm|i am)\s+([a-zA-Z]+)/i);
+            if (nameMatch) {
+                this.userName = nameMatch[1];
+                localStorage.setItem('userName', this.userName);
+                return `Nice to meet you, ${this.userName}! 😊 I'm excited to help you with your career journey. What would you like to know about job searching or career development?`;
+            }
+        }
+        
+        // Contextual responses based on user preferences
+        if (this.userPreferences) {
+            if (lowerMessage.includes('my skills') || lowerMessage.includes('what skills')) {
+                return `Based on your profile, I see you have skills in: **${this.userPreferences.skills.join(', ')}**. These are great! 
+
+To make yourself even more competitive, consider learning:
+- **Cloud platforms** (AWS, Azure) - high demand
+- **Data analysis** tools -

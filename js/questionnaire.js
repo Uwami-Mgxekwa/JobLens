@@ -139,7 +139,7 @@ async function getCityFromCoords(lat, lon) {
     let closestCity = null;
     let minDistance = Infinity;
     
-    for (const [city, coords] of Object.entries(saCity)) {
+    for (const [city, coords] of Object.entries(saCities)) {
         const distance = Math.sqrt(
             Math.pow(lat - coords.lat, 2) + Math.pow(lon - coords.lon, 2)
         );

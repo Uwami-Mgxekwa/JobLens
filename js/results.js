@@ -308,7 +308,7 @@ function displayJobs(jobs) {
     // Smart sorting: combine match score and freshness
     const sortedJobs = jobs.sort((a, b) => {
         const aMatchScore = calculateMatchScore(a);
-        const bMatchScore = b);
+        const bMatchScore = calculateMatchScore(b);
         const aFreshness = a.freshnessScore || 50;
         const bFreshness = b.freshnessScore || 50;
         
@@ -318,6 +318,9 @@ function displayJobs(jobs) {
         
         return bScore - aScore;
     });
+    
+    // Show results status
+    showResultsStatus(jobs);
     
     jobsGrid.innerHTML = sortedJobs.map(job => createJobCard(job)).join('');
 }

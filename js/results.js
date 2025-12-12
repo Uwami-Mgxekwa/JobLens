@@ -177,14 +177,24 @@ function calculateMatchScore(job) {
     return Math.round(score);
 }
 
-// Create job card HTML
+// Create job card HTML with freshness indicators
 function createJobCard(job) {
     const matchScore = calculateMatchScore(job);
     const isSaved = savedJobs.some(savedJob => savedJob.id === job.id);
     
+    // Freshness styling
+    const freshnessClass = getFreshnessClass(job.freshnessScore);
+    const freshnessIcon = getFreshnessIcon(job.freshnessScore);
+    
     return `
-        <div class="job-card" data-job-id="${job.id}">
-            <div class="match-badge">${matchScore}% Match</div>
+        <div class="job-card ${freshnessClass}" data-job-id="${job.id}" data-freshness="${job.freshnessScore || 50}">
+            <div class="job-badges">
+                <div class="match-badge">${matchScore}% Match</div>
+                ${job.freshness ? `<div class="freshness-badge ${freshnessClass}">
+                    <span class="freshness-icon">${freshnessIcon}</span>
+                    <span class="freshness-text">${job.freshness}</span>
+                </div>` : ''}
+            </div>
             <h3>${job.title}</h3>
             <p class="job-company">${job.company}</p>
             <div class="job-details">
@@ -193,15 +203,15 @@ function createJobCard(job) {
                     <span>${job.location}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">R</span>
+                    <span class="job-detail-icon">💰</span>
                     <span>${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">●</span>
+                    <span class="job-detail-icon">🏢</span>
                     <span>${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">#</span>
+                    <span class="job-detail-icon">🏷️</span>
                     <span>${job.industry.charAt(0).toUpperCase() + job.industry.slice(1)}</span>
                 </div>
                 ${job.source ? `<div class="job-detail">
@@ -209,7 +219,7 @@ function createJobCard(job) {
                     <span>${job.source}</span>
                 </div>` : ''}
             </div>
-            <p>${job.description}</p>
+            <p class="job-description">${job.description}</p>
             <div class="job-actions">
                 ${isSaved ? 
                     `<button class="btn-unsave" onclick="unsaveJob(${job.id})">Unsave</button>` :
@@ -219,6 +229,24 @@ function createJobCard(job) {
             </div>
         </div>
     `;
+}
+
+// Get freshness CSS class
+function getFreshnessClass(freshnessScore) {
+    if (!freshnessScore) return '';
+    if (freshnessScore >= 90) return 'fresh-hot';
+    if (freshnessScore >= 70) return 'fresh-new';
+    if (freshnessScore >= 50) return 'fresh-recent';
+    return 'fresh-old';
+}
+
+// Get freshness icon
+function getFreshnessIcon(freshnessScore) {
+    if (!freshnessScore) return '📅';
+    if (freshnessScore >= 90) return '🔥';
+    if (freshnessScore >= 70) return '✨';
+    if (freshnessScore >= 50) return '📅';
+    return '⏰';
 }
 
 // Display jobs

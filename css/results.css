@@ -197,9 +197,13 @@
 
 .job-detail {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.4;
 }
 
 .job-detail-icon {

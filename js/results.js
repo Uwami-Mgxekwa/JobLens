@@ -362,14 +362,55 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
+// Load more jobs with different search terms
+async function loadMoreJobs() {
+    try {
+        const jobAPI = new JobAPI();
+        
+        // Try different search strategies to get more variety
+        const searchStrategies = [
+            { what: 'developer software engineer', resultsPerPage: 20 },
+            { what: 'manager analyst', resultsPerPage: 15 },
+            { what: 'designer marketing', resultsPerPage: 15 },
+            { where: 'cape town johannesburg', resultsPerPage: 20 },
+            { where: 'remote', resultsPerPage: 20 }
+        ];
+        
+        let additionalJobs = [];
+        
+        for (const strategy of searchStrategies) {
+            const jobs = await jobAPI.fetchAdzunaJobs(strategy);
+            additionalJobs = additionalJobs.concat(jobs);
+        }
+        
+        // Remove duplicates based on title and company
+        const uniqueJobs = [];
+        const seen = new Set();
+        
+        [...allJobs, ...additionalJobs].forEach(job => {
+            const key = `${job.title}-${job.company}`.toLowerCase();
+            if (!seen.has(key)) {
+                seen.add(key);
+                uniqueJobs.push(job);
+            }
+        });
+        
+        allJobs = uniqueJobs;
+        console.log('📈 Expanded job list to:', allJobs.length, 'unique jobs');
+        
+    } catch (error) {
+        console.error('Error loading additional jobs:', error);
+    }
+}
+
 // Initialize
 async function init() {
-    console.log('Initializing results page...');
-    console.log('User preferences:', userPreferences);
+    console.log('🚀 Initializing JobLens Results...');
+    console.log('👤 User preferences:', userPreferences);
     
     // Check if user has completed questionnaire
     if (!userPreferences) {
-        console.log('No user preferences found');
+        console.log('❌ No user preferences found');
         if (confirm('You haven\'t completed the questionnaire yet. Would you like to do that now?')) {
             window.location.href = 'questionnaire.html';
             return;
@@ -388,8 +429,16 @@ async function init() {
     
     // Load and display jobs
     await loadJobs();
+    
+    // Load additional jobs for better variety
+    if (allJobs.length > 0 && allJobs[0].source === 'Adzuna') {
+        await loadMoreJobs();
+    }
+    
     filteredJobs = [...allJobs];
     displayJobs(filteredJobs);
+    
+    console.log('✅ JobLens initialized with', allJobs.length, 'jobs');
 }
 
 // Start when page loads

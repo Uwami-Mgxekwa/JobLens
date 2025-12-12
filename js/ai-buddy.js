@@ -623,4 +623,117 @@ class AIBuddy {
 
 To make yourself even more competitive, consider learning:
 - **Cloud platforms** (AWS, Azure) - high demand
-- **Data analysis** tools -
+- **Data analysis** tools - valuable across industries  
+- **Project management** - always needed
+- **Communication skills** - essential for career growth
+
+Would you like specific learning resources for any of these?`;
+            }
+            
+            if (lowerMessage.includes('salary') || lowerMessage.includes('pay')) {
+                const avgSalary = Math.round((this.userPreferences.salaryRange.min + this.userPreferences.salaryRange.max) / 2);
+                return `Your target salary range of **R${this.userPreferences.salaryRange.min.toLocaleString()} - R${this.userPreferences.salaryRange.max.toLocaleString()}** is realistic for your skills! 💰
+
+**Salary negotiation tips:**
+- Research market rates on PayScale/Glassdoor
+- Highlight your unique value proposition
+- Consider the full package (benefits, growth, culture)
+- Practice your pitch beforehand
+- Be confident but flexible
+
+Want me to help you prepare for salary negotiations?`;
+            }
+        }
+        
+        // Job search advice
+        if (lowerMessage.includes('job search') || lowerMessage.includes('find job') || lowerMessage.includes('looking for work')) {
+            return `Great question! Here's my **proven job search strategy**: 🎯
+
+**1. Optimize your online presence**
+- Update LinkedIn with keywords from job descriptions
+- Create a portfolio showcasing your best work
+- Get recommendations from colleagues
+
+**2. Network strategically**  
+- Attend industry meetups and conferences
+- Connect with people in your target companies
+- Join professional groups on LinkedIn
+
+**3. Apply smart, not hard**
+- Quality over quantity - tailor each application
+- Follow up within a week
+- Track your applications
+
+**4. Prepare thoroughly**
+- Research the company culture and values
+- Practice common interview questions
+- Prepare thoughtful questions to ask them
+
+Which area would you like me to dive deeper into?`;
+        }
+        
+        // Resume help
+        if (lowerMessage.includes('resume') || lowerMessage.includes('cv')) {
+            return `Let me help you create a **standout resume**! 📄
+
+**Essential sections:**
+- **Contact info** (phone, email, LinkedIn, portfolio)
+- **Professional summary** (2-3 lines highlighting your value)
+- **Key skills** (match job descriptions)
+- **Work experience** (focus on achievements, not duties)
+- **Education & certifications**
+
+**Pro tips:**
+- Use **action verbs** (achieved, implemented, optimized)
+- **Quantify results** (increased sales by 25%, managed team of 8)
+- Keep it **1-2 pages** max
+- Use **ATS-friendly format** (simple, clean design)
+- **Customize** for each application
+
+Want me to review a specific section or help with formatting?`;
+        }
+        
+        // Interview preparation
+        if (lowerMessage.includes('interview') || lowerMessage.includes('interview prep')) {
+            return `Interview prep is crucial! Let me help you **ace it**: 🌟
+
+**Before the interview:**
+- Research the company, role, and interviewer
+- Prepare 5-7 thoughtful questions
+- Practice your elevator pitch
+- Plan your outfit and route
+
+**Common questions to prepare:**
+- "Tell me about yourself"
+- "Why do you want this role?"
+- "What's your greatest strength/weakness?"
+- "Where do you see yourself in 5 years?"
+- "Why are you leaving your current job?"
+
+**STAR method for behavioral questions:**
+- **Situation** - Set the context
+- **Task** - Explain your responsibility  
+- **Action** - Describe what you did
+- **Result** - Share the outcome
+
+**After the interview:**
+- Send a thank-you email within 24 hours
+- Reiterate your interest and key qualifications
+
+Want to practice answering any specific questions?`;
+        }
+        
+        // Career advice
+        if (lowerMessage.includes('career') || lowerMessage.includes('growth') || lowerMessage.includes('promotion')) {
+            return `Career growth is a journey, not a destination! 🚀 Here's how to **accelerate yours**:
+
+**Short-term (3-6 months):**
+- Set clear, measurable goals
+- Seek feedback from your manager
+- Take on stretch assignments
+- Build relationships across departments
+
+**Medium-term (6-18 months):**
+- Develop leadership skills
+- Mentor junior colleagues  
+- 

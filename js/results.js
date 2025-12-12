@@ -14,42 +14,65 @@ let allJobs = [];
 let filteredJobs = [];
 let savedJobs = [];
 
-// Load jobs from API and fallback sources
+// Load jobs with enhanced variety and caching
 async function loadJobs() {
     try {
-        console.log('Loading real jobs from Adzuna API...');
+        console.log('🚀 Loading diverse job opportunities...');
         
         // Initialize job API
         const jobAPI = new JobAPI();
         
-        // Search for jobs based on user preferences
-        const realJobs = await jobAPI.searchJobs(userPreferences, {
+        // Use enhanced search with variety and caching
+        const realJobs = await jobAPI.searchJobsWithVariety(userPreferences, 100);
+        
+        if (realJobs && realJobs.length > 0) {
+            allJobs = realJobs;
+            console.log('✅ Enhanced job search complete:', allJobs.length, 'diverse jobs loaded');
+            
+            // Show cache status
+            const cacheUsed = realJobs.some(job => job.fromCache);
+            if (cacheUsed) {
+                console.log('📦 Some results served from cache for faster loading');
+            }
+            return;
+        }
+        
+        // If enhanced API fails, try basic search
+        console.log('🔄 Enhanced search failed, trying basic search...');
+        const basicJobs = await jobAPI.searchJobs(userPreferences, {
             resultsPerPage: 50,
             page: 1
         });
         
-        if (realJobs && realJobs.length > 0) {
-            allJobs = realJobs;
-            console.log('✅ Real jobs loaded successfully:', allJobs.length, 'jobs from Adzuna');
+        if (basicJobs && basicJobs.length > 0) {
+            allJobs = basicJobs;
+            console.log('✅ Basic search successful:', allJobs.length, 'jobs loaded');
             return;
         }
         
         // If API fails, try loading from local JSON
-        console.log('API returned no results, trying local jobs.json...');
+        console.log('🔄 API search failed, trying local jobs.json...');
         const response = await fetch('../assets/jobs.json');
         if (response.ok) {
             allJobs = await response.json();
+            // Add freshness data to local jobs
+            allJobs = allJobs.map(job => ({
+                ...job,
+                freshness: 'Recently posted',
+                freshnessScore: 60,
+                source: job.source || 'Local Data'
+            }));
             console.log('📁 Local jobs loaded:', allJobs.length, 'jobs');
             return;
         }
         
-        throw new Error('Both API and local data failed');
+        throw new Error('All job loading methods failed');
         
     } catch (error) {
-        console.error('Error loading jobs:', error);
+        console.error('❌ Error loading jobs:', error);
         console.log('🔄 Using fallback sample data');
         
-        // Fallback sample data
+        // Enhanced fallback sample data with freshness
         allJobs = [
             {
                 id: 1,
@@ -60,9 +83,11 @@ async function loadJobs() {
                 workType: "remote",
                 industry: "technology",
                 skills: ["javascript", "react", "css"],
-                description: "Build amazing web applications",
+                description: "Build amazing web applications with modern frameworks",
                 link: "https://example.com/job1",
-                source: "Sample Data"
+                source: "Sample Data",
+                freshness: "Posted 2 hours ago",
+                freshnessScore: 95
             },
             {
                 id: 2,
@@ -73,9 +98,11 @@ async function loadJobs() {
                 workType: "hybrid",
                 industry: "design",
                 skills: ["figma", "ui design", "user research"],
-                description: "Create beautiful user experiences",
+                description: "Create beautiful user experiences for digital products",
                 link: "https://example.com/job2",
-                source: "Sample Data"
+                source: "Sample Data",
+                freshness: "Posted 1 day ago",
+                freshnessScore: 80
             },
             {
                 id: 3,
@@ -88,7 +115,9 @@ async function loadJobs() {
                 skills: ["python", "sql", "data visualization"],
                 description: "Analyze data and provide insights. Competitive salary package.",
                 link: "https://example.com/job3",
-                source: "Sample Data"
+                source: "Sample Data",
+                freshness: "Posted 3 days ago",
+                freshnessScore: 70
             },
             {
                 id: 4,
@@ -99,9 +128,11 @@ async function loadJobs() {
                 workType: "on-site",
                 industry: "technology",
                 skills: ["product strategy", "agile", "communication"],
-                description: "Lead product development",
+                description: "Lead product development from concept to launch",
                 link: "https://example.com/job4",
-                source: "Sample Data"
+                source: "Sample Data",
+                freshness: "Posted 1 week ago",
+                freshnessScore: 60
             },
             {
                 id: 5,
@@ -112,9 +143,11 @@ async function loadJobs() {
                 workType: "hybrid",
                 industry: "marketing",
                 skills: ["seo", "content marketing", "social media"],
-                description: "Drive marketing campaigns",
+                description: "Drive marketing campaigns and brand awareness",
                 link: "https://example.com/job5",
-                source: "Sample Data"
+                source: "Sample Data",
+                freshness: "Posted 2 weeks ago",
+                freshnessScore: 50
             }
         ];
     }

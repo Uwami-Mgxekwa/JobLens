@@ -334,6 +334,160 @@ function showResultsStatus(jobs) {
     statusElement.style.display = 'flex';
 }
 
+// Job sharing functionality
+function toggleShareMenu(jobId) {
+    const shareMenu = document.getElementById(`shareMenu${jobId}`);
+    const allShareMenus = document.querySelectorAll('.share-menu');
+    
+    // Close all other share menus
+    allShareMenus.forEach(menu => {
+        if (menu.id !== `shareMenu${jobId}`) {
+            menu.style.display = 'none';
+        }
+    });
+    
+    // Toggle current menu
+    if (shareMenu.style.display === 'none') {
+        shareMenu.style.display = 'block';
+    } else {
+        shareMenu.style.display = 'none';
+    }
+}
+
+function copyJobLink(jobId) {
+    const job = allJobs.find(j => j.id == jobId);
+    if (!job) return;
+    
+    const jobUrl = job.link;
+    
+    // Try to copy to clipboard
+    if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(jobUrl).then(() => {
+            showShareNotification('✅ Job link copied to clipboard!');
+        }).catch(() => {
+            fallbackCopyTextToClipboard(jobUrl);
+        });
+    } else {
+        fallbackCopyTextToClipboard(jobUrl);
+    }
+    
+    // Close share menu
+    document.getElementById(`shareMenu${jobId}`).style.display = 'none';
+}
+
+function fallbackCopyTextToClipboard(text) {
+    const textArea = document.createElement('textarea');
+    textArea.value = text;
+    textArea.style.top = '0';
+    textArea.style.left = '0';
+    textArea.style.position = 'fixed';
+    
+    document.body.appendChild(textArea);
+    textArea.focus();
+    textArea.select();
+    
+    try {
+        document.execCommand('copy');
+        showShareNotification('✅ Job link copied to clipboard!');
+    } catch (err) {
+        showShareNotification('❌ Could not copy link. Please copy manually.');
+    }
+    
+    document.body.removeChild(textArea);
+}
+
+function shareViaWhatsApp(jobId) {
+    const job = allJobs.find(j => j.id == jobId);
+    if (!job) return;
+    
+    const message = `🎯 Check out this job opportunity I found on JobLens!
+
+*${job.title}* at *${job.company}*
+📍 ${job.location}
+💰 ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}
+🏢 ${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}
+
+${job.description.substring(0, 100)}...
+
+Apply here: ${job.link}
+
+---
+Find your perfect job match at JobLens! 🚀`;
+    
+    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+    window.open(whatsappUrl, '_blank');
+    
+    // Close share menu
+    document.getElementById(`shareMenu${jobId}`).style.display = 'none';
+}
+
+function shareViaEmail(jobId) {
+    const job = allJobs.find(j => j.id == jobId);
+    if (!job) return;
+    
+    const subject = `Job Opportunity: ${job.title} at ${job.company}`;
+    const body = `Hi there!
+
+I found this great job opportunity on JobLens and thought you might be interested:
+
+Job Title: ${job.title}
+Company: ${job.company}
+Location: ${job.location}
+Salary: ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}
+Work Type: ${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}
+
+Description:
+${job.description}
+
+Apply here: ${job.link}
+
+---
+This job was found using JobLens - an AI-powered job matching platform for South African professionals. Find your perfect career match at: ${window.location.origin}
+
+Best regards!`;
+    
+    const emailUrl = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = emailUrl;
+    
+    // Close share menu
+    document.getElementById(`shareMenu${jobId}`).style.display = 'none';
+}
+
+function showShareNotification(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 8px;
+        font-weight: 600;
+        z-index: 1000;
+        box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
+        animation: slideIn 0.3s ease-out;
+    `;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease-in';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
+
+// Close share menus when clicking outside
+document.addEventListener('click', (e) => {
+    if (!e.target.closest('.share-actions')) {
+        const allShareMenus = document.querySelectorAll('.share-menu');
+        allShareMenus.forEach(menu => {
+            menu.style.display = 'none';
+        });
+    }
+});
+
 // Display jobs with smart sorting
 function displayJobs(jobs) {
     const jobsGrid = document.getElementById('jobsGrid');

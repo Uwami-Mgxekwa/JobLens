@@ -256,25 +256,25 @@ function createJobCard(job) {
             <div class="job-actions">
                 <div class="primary-actions">
                     ${isSaved ? 
-                        `<button class="btn-unsave" onclick="unsaveJob(${job.id})">Unsave</button>` :
-                        `<button class="btn-save" onclick="saveJob(${job.id})">Save Job</button>`
+                        `<button class="btn-unsave" onclick="unsaveJob('${job.id}')">Unsave</button>` :
+                        `<button class="btn-save" onclick="saveJob('${job.id}')">Save Job</button>`
                     }
                     <a href="${job.link}" target="_blank" class="btn-view">View Job</a>
                 </div>
                 <div class="share-actions">
-                    <button class="btn-share" onclick="toggleShareMenu(${job.id})" title="Share Job">
+                    <button class="btn-share" onclick="toggleShareMenu('${job.id}')" title="Share Job">
                         <span class="share-icon">📤</span>
                     </button>
                     <div class="share-menu" id="shareMenu${job.id}" style="display: none;">
-                        <button class="share-option" onclick="copyJobLink(${job.id})" title="Copy Link">
+                        <button class="share-option" onclick="copyJobLink('${job.id}')" title="Copy Link">
                             <span class="share-option-icon">🔗</span>
                             <span>Copy Link</span>
                         </button>
-                        <button class="share-option" onclick="shareViaWhatsApp(${job.id})" title="Share on WhatsApp">
+                        <button class="share-option" onclick="shareViaWhatsApp('${job.id}')" title="Share on WhatsApp">
                             <span class="share-option-icon">💬</span>
                             <span>WhatsApp</span>
                         </button>
-                        <button class="share-option" onclick="shareViaEmail(${job.id})" title="Share via Email">
+                        <button class="share-option" onclick="shareViaEmail('${job.id}')" title="Share via Email">
                             <span class="share-option-icon">📧</span>
                             <span>Email</span>
                         </button>
@@ -336,7 +336,15 @@ function showResultsStatus(jobs) {
 
 // Job sharing functionality
 window.toggleShareMenu = function toggleShareMenu(jobId) {
+    console.log('📤 Toggle share menu called with ID:', jobId);
     const shareMenu = document.getElementById(`shareMenu${jobId}`);
+    console.log('📋 Found share menu:', shareMenu);
+    
+    if (!shareMenu) {
+        console.error('❌ Share menu not found for job ID:', jobId);
+        return;
+    }
+    
     const allShareMenus = document.querySelectorAll('.share-menu');
     
     // Close all other share menus
@@ -347,12 +355,14 @@ window.toggleShareMenu = function toggleShareMenu(jobId) {
     });
     
     // Toggle current menu
-    if (shareMenu.style.display === 'none') {
+    if (shareMenu.style.display === 'none' || shareMenu.style.display === '') {
         shareMenu.style.display = 'block';
+        console.log('✅ Share menu opened');
     } else {
         shareMenu.style.display = 'none';
+        console.log('✅ Share menu closed');
     }
-}
+};
 
 window.copyJobLink = function copyJobLink(jobId) {
     const job = allJobs.find(j => j.id == jobId);
@@ -373,7 +383,7 @@ window.copyJobLink = function copyJobLink(jobId) {
     
     // Close share menu
     document.getElementById(`shareMenu${jobId}`).style.display = 'none';
-}
+};
 
 function fallbackCopyTextToClipboard(text) {
     const textArea = document.createElement('textarea');
@@ -419,7 +429,7 @@ Find your perfect job match at JobLens! 🚀`;
     
     // Close share menu
     document.getElementById(`shareMenu${jobId}`).style.display = 'none';
-}
+};
 
 window.shareViaEmail = function shareViaEmail(jobId) {
     const job = allJobs.find(j => j.id == jobId);
@@ -451,7 +461,7 @@ Best regards!`;
     
     // Close share menu
     document.getElementById(`shareMenu${jobId}`).style.display = 'none';
-}
+};
 
 function showShareNotification(message) {
     const notification = document.createElement('div');
@@ -561,7 +571,10 @@ function resetFilters() {
 
 // Save job
 window.saveJob = function saveJob(jobId) {
+    console.log('💾 Save job called with ID:', jobId);
     const job = allJobs.find(j => j.id === jobId);
+    console.log('📋 Found job:', job);
+    
     if (job && !savedJobs.some(j => j.id === jobId)) {
         savedJobs.push(job);
         // Save to localStorage for persistence
@@ -571,8 +584,11 @@ window.saveJob = function saveJob(jobId) {
         
         // Show success notification
         showNotification(`${job.title} saved successfully!`);
+        console.log('✅ Job saved successfully');
+    } else {
+        console.log('❌ Job not found or already saved');
     }
-}
+};
 
 // Unsave job
 window.unsaveJob = function unsaveJob(jobId) {
@@ -586,7 +602,7 @@ window.unsaveJob = function unsaveJob(jobId) {
     if (job) {
         showNotification(`${job.title} removed from saved jobs.`);
     }
-}
+};
 
 // Show notification
 function showNotification(message) {
@@ -719,6 +735,17 @@ async function init() {
     
     console.log('✅ JobLens initialized with', allJobs.length, 'jobs');
 }
+
+// Test function to verify functions are accessible
+window.testFunctions = function() {
+    console.log('🧪 Testing functions...');
+    console.log('saveJob:', typeof window.saveJob);
+    console.log('unsaveJob:', typeof window.unsaveJob);
+    console.log('toggleShareMenu:', typeof window.toggleShareMenu);
+    console.log('copyJobLink:', typeof window.copyJobLink);
+    console.log('shareViaWhatsApp:', typeof window.shareViaWhatsApp);
+    console.log('shareViaEmail:', typeof window.shareViaEmail);
+};
 
 // Start when page loads
 init();

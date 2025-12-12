@@ -292,6 +292,7 @@
     .jobs-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 0.5rem;
     }
     
     .filters-container {
@@ -308,6 +309,75 @@
         max-width: 100vw;
         overflow-x: hidden;
         box-sizing: border-box;
+        padding: 2rem 1rem;
+    }
+    
+    /* Mobile job card optimizations */
+    .job-card {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        padding: 1rem;
+        margin: 0;
+    }
+    
+    .job-card h3 {
+        font-size: 1.1rem;
+        margin-right: 80px;
+        line-height: 1.2;
+    }
+    
+    .job-badges {
+        top: 0.5rem;
+        right: 0.5rem;
+        gap: 0.3rem;
+    }
+    
+    .match-badge {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    .freshness-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.5rem;
+    }
+    
+    .freshness-text {
+        display: none; /* Hide text on mobile, keep icon */
+    }
+    
+    .job-detail {
+        font-size: 0.9rem;
+        align-items: flex-start;
+        margin-bottom: 0.4rem;
+    }
+    
+    .job-detail span:last-child {
+        flex: 1;
+        word-break: break-word;
+    }
+    
+    .job-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin: 0.8rem 0;
+    }
+    
+    .job-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+    }
+    
+    .job-actions button,
+    .job-actions a {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem;
+        font-size: 0.9rem;
     }
     
     /* Fix grid layouts on mobile */
@@ -317,19 +387,19 @@
         overflow-x: hidden;
     }
     
-    /* Ensure job cards don't overflow */
-    .job-card {
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-    
     /* Fix table-like content */
     .filters-container {
         width: 100%;
         max-width: 100%;
         overflow-x: hidden;
+    }
+    
+    /* Results header mobile optimization */
+    .results-header h1 {
+        font-size: 2rem;
+    }
+    
+    .results-count {
+        font-size: 1rem;
     }
 }

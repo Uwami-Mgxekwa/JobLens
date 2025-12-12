@@ -1,29 +1,33 @@
 // JobLens Service Worker
-const CACHE_NAME = 'joblens-v1.2';
-const STATIC_CACHE = 'joblens-static-v1.2';
-const DYNAMIC_CACHE = 'joblens-dynamic-v1.2';
+const CACHE_NAME = 'joblens-v1.3';
+const STATIC_CACHE = 'joblens-static-v1.3';
+const DYNAMIC_CACHE = 'joblens-dynamic-v1.3';
 
 // Files to cache immediately
 const STATIC_FILES = [
-    '/',
-    '/index.html',
-    '/pages/questionnaire.html',
-    '/pages/results.html',
-    '/pages/dashboard.html',
-    '/pages/about.html',
-    '/css/base.css',
-    '/css/landing.css',
-    '/css/questionnaire.css',
-    '/css/results.css',
-    '/css/dashboard.css',
-    '/css/about.css',
-    '/js/questionnaire.js',
-    '/js/results.js',
-    '/js/dashboard.js',
-    '/js/theme.js',
-    '/js/job-api.js',
-    '/assets/logo.jpeg',
-    '/assets/jobs.json'
+    './',
+    './index.html',
+    './pages/questionnaire.html',
+    './pages/results.html',
+    './pages/dashboard.html',
+    './pages/about.html',
+    './css/base.css',
+    './css/landing.css',
+    './css/questionnaire.css',
+    './css/results.css',
+    './css/dashboard.css',
+    './css/about.css',
+    './js/questionnaire.js',
+    './js/results.js',
+    './js/dashboard.js',
+    './js/theme.js',
+    './js/job-api.js',
+    './js/ai-buddy.js',
+    './js/network-status.js',
+    './js/pwa-install.js',
+    './assets/logo.jpeg',
+    './assets/jobs.json',
+    './manifest.json'
 ];
 
 // Install event - cache static files
@@ -87,48 +91,61 @@ self.addEventListener('fetch', (event) => {
     
     // Handle static files
     event.respondWith(
-        caches.match(request)
-            .then((cachedResponse) => {
-                if (cachedResponse) {
-                    // Serve from cache
-                    return cachedResponse;
-                }
-                
-                // Fetch from network and cache
-                return fetch(request)
-                    .then((networkResponse) => {
-                        // Only cache successful responses
-                        if (networkResponse.status === 200) {
-                            const responseClone = networkResponse.clone();
-                            caches.open(DYNAMIC_CACHE)
-                                .then((cache) => {
-                                    cache.put(request, responseClone);
-                                });
-                        }
-                        return networkResponse;
-                    })
-                    .catch(() => {
-                        // Return offline page for navigation requests
-                        if (request.mode === 'navigate') {
-                            return caches.match('/index.html');
-                        }
-                        
-                        // Return a basic offline response
-                        return new Response(
-                            JSON.stringify({
-                                error: 'Offline',
-                                message: 'You are currently offline. Please check your internet connection.'
-                            }),
-                            {
-                                status: 503,
-                                statusText: 'Service Unavailable',
-                                headers: { 'Content-Type': 'application/json' }
-                            }
-                        );
-                    });
-            })
+        handleStaticRequest(request)
     );
 });
+
+// Handle static file requests
+async function handleStaticRequest(request) {
+    try {
+        // Try cache first
+        const cachedResponse = await caches.match(request);
+        if (cachedResponse) {
+            return cachedResponse;
+        }
+        
+        // Try network
+        const networkResponse = await fetch(request);
+        
+        // Cache successful responses
+        if (networkResponse.status === 200) {
+            const cache = await caches.open(DYNAMIC_CACHE);
+            cache.put(request, networkResponse.clone());
+        }
+        
+        return networkResponse;
+        
+    } catch (error) {
+        console.log('📡 Request failed, trying fallbacks...', request.url);
+        
+        // For navigation requests, return index.html
+        if (request.mode === 'navigate') {
+            const indexResponse = await caches.match('./index.html') || await caches.match('./');
+            if (indexResponse) {
+                return indexResponse;
+            }
+        }
+        
+        // For other requests, return appropriate offline response
+        if (request.destination === 'image') {
+            // Return a placeholder for images
+            return new Response('', { status: 204, statusText: 'No Content' });
+        }
+        
+        // Return offline JSON response
+        return new Response(
+            JSON.stringify({
+                error: 'Offline',
+                message: 'You are currently offline. Please check your internet connection.'
+            }),
+            {
+                status: 503,
+                statusText: 'Service Unavailable',
+                headers: { 'Content-Type': 'application/json' }
+            }
+        );
+    }
+}
 
 // Handle API requests with caching strategy
 async function handleApiRequest(request) {
@@ -205,17 +222,17 @@ self.addEventListener('push', (event) => {
     
     const options = {
         body: 'New job matches found for you!',
-        icon: '/assets/logo.jpeg',
-        badge: '/assets/logo.jpeg',
+        icon: './assets/logo.jpeg',
+        badge: './assets/logo.jpeg',
         vibrate: [200, 100, 200],
         data: {
-            url: '/pages/results.html'
+            url: './pages/results.html'
         },
         actions: [
             {
                 action: 'view',
                 title: 'View Jobs',
-                icon: '/assets/logo.jpeg'
+                icon: './assets/logo.jpeg'
             },
             {
                 action: 'dismiss',
@@ -237,7 +254,7 @@ self.addEventListener('notificationclick', (event) => {
     
     if (event.action === 'view') {
         event.waitUntil(
-            clients.openWindow('/pages/results.html')
+            clients.openWindow('./pages/results.html')
         );
     }
 });

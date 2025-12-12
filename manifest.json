@@ -2,12 +2,12 @@
   "name": "JobLens - AI Job Matching",
   "short_name": "JobLens",
   "description": "Find your perfect job match with AI-powered job matching for South African professionals",
-  "start_url": "/",
+  "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#2ecc71",
   "orientation": "portrait-primary",
-  "scope": "/",
+  "scope": "./",
   "lang": "en",
   "categories": ["business", "productivity", "lifestyle"],
   "icons": [
@@ -73,7 +73,7 @@
       "name": "Find Jobs",
       "short_name": "Jobs",
       "description": "Search for job opportunities",
-      "url": "/pages/results.html",
+      "url": "./pages/results.html",
       "icons": [
         {
           "src": "assets/icons/icon-96x96.jpeg",
@@ -85,7 +85,7 @@
       "name": "Take Quiz",
       "short_name": "Quiz",
       "description": "Complete career questionnaire",
-      "url": "/pages/questionnaire.html",
+      "url": "./pages/questionnaire.html",
       "icons": [
         {
           "src": "assets/icons/icon-96x96.jpeg",
@@ -97,7 +97,7 @@
       "name": "Dashboard",
       "short_name": "Dashboard",
       "description": "View saved jobs and preferences",
-      "url": "/pages/dashboard.html",
+      "url": "./pages/dashboard.html",
       "icons": [
         {
           "src": "assets/icons/icon-96x96.jpeg",

@@ -788,4 +788,15 @@ What skill would you like to develop first? I can suggest specific resources!`;
 **Offline networking:**
 - **Industry events:** Conferences, meetups, workshops
 - **Alumni networks:** Reach out to school connections
-- **Profe
+- **Professional associations:** Join relevant organizations
+- **Volunteer work:** Meet like-minded professionals
+
+**Networking tips:**
+- **Give before you get** - offer help, share resources
+- **Be authentic** - people can sense fake interest
+- **Follow up** - send a personalized message after meeting
+- **Stay in touch** - regular check-ins, not just when you need something
+
+**Conversation starters:**
+- "What trends are you seeing in [industry]?"
+- 

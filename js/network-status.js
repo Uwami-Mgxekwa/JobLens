@@ -3,6 +3,8 @@ class NetworkStatus {
     constructor() {
         this.isOnline = navigator.onLine;
         this.statusIndicator = null;
+        this.hasShownInitialStatus = false;
+        this.lastKnownStatus = null;
         this.init();
     }
 
@@ -10,7 +12,8 @@ class NetworkStatus {
         this.createStatusIndicator();
         this.registerServiceWorker();
         this.setupEventListeners();
-        this.updateStatus();
+        // Don't show status on initial load - only on changes
+        this.lastKnownStatus = this.isOnline;
     }
 
     createStatusIndicator() {

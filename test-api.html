@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JobLens API Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 2rem; max-width: 800px; margin: 0 auto; }
+        .test-result { margin: 1rem 0; padding: 1rem; border-radius: 8px; }
+        .success { background: #d4edda; border: 1px solid #c3e6cb; color: #155724; }
+        .error { background: #f8d7da; border: 1px solid #f5c6cb; color: #721c24; }
+        .loading { background: #fff3cd; border: 1px solid #ffeaa7; color: #856404; }
+        button { padding: 0.5rem 1rem; margin: 0.5rem; background: #2ecc71; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #27ae60; }
+        .job-item { border: 1px solid #ddd; margin: 0.5rem 0; padding: 1rem; border-radius: 4px; }
+        .job-title { font-weight: bold; color: #2ecc71; }
+        .job-company { color: #666; }
+        .job-details { font-size: 0.9em; color: #888; margin: 0.5rem 0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 JobLens API Test</h1>
+    <p>This page tests the Adzuna API integration to make sure real job data is working.</p>
+    
+    <div class="test-controls">
+        <button onclick="testBasicAPI()">Test Basic API</button>
+        <button onclick="testSAJobs()">Test SA Jobs</button>
+        <button onclick="testTechJobs()">Test Tech Jobs</button>
+        <button onclick="testRemoteJobs()">Test Remote Jobs</button>
+        <button onclick="clearResults()">Clear Results</button>
+    </div>
+    
+    <div id="results"></div>
+    
+    <script src="js/job-api.js"></script>
+    <script>
+        const resultsDiv = document.getElementById('results');
+        
+        function showResult(message, type = 'success') {
+            const div = document.createElement('div');
+            div.className = `test-result ${type}`;
+            div.innerHTML = message;
+            resultsDiv.appendChild(div);
+        }
+        
+        function showJobs(jobs, title) {
+            if (jobs.length === 0) {
+                showResult(`❌ ${title}: No jobs found`, 'error');
+                return;
+            }
+            
+            let html = `<h3>✅ ${title}: Found ${jobs.length} jobs</h3>`;
+            jobs.slice(0, 5).forEach(job => {
+                html += `
+                    <div class="job-item">
+                        <div class="job-title">${job.title}</div>
+                        <div class="job-company">${job.company}</div>
+                        <div class="job-details">
+                            📍 ${job.location} | 
+                            💰 ${job.salary ? `R${job.salary.min?.toLocaleString()} - R${job.salary.max?.toLocaleString()}` : 'Salary not disclosed'} | 
+                            🏢 ${job.workType} | 
+                            🔗 ${job.source}
+                        </div>
+                        <div style="font-size: 0.8em; color: #666;">${job.description.substring(0, 150)}...</div>
+                    </div>
+                `;
+            });
+            
+            showResult(html, 'success');
+        }
+        
+        async function testBasicAPI() {
+            showResult('🔄 Testing basic API connection...', 'loading');
+            
+            try {
+                const jobAPI = new JobAPI();
+                const jobs = await jobAPI.fetchAdzunaJobs({ resultsPerPage: 10 });
+                showJobs(jobs, 'Basic API Test');
+            } catch (error) {
+                showResult(`❌ API Test Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testSAJobs() {
+            showResult('🔄 Testing South African jobs...', 'loading');
+            
+            try {
+                const jobAPI = new JobAPI();
+                const jobs = await jobAPI.fetchAdzunaJobs({ 
+                    where: 'south africa',
+                    resultsPerPage: 15 
+                });
+                showJobs(jobs, 'South African Jobs');
+            } catch (error) {
+                showResult(`❌ SA Jobs Test Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testTechJobs() {
+            showResult('🔄 Testing technology jobs...', 'loading');
+            
+            try {
+                const jobAPI = new JobAPI();
+                const jobs = await jobAPI.fetchAdzunaJobs({ 
+                    what: 'developer programmer software',
+                    resultsPerPage: 15 
+                });
+                showJobs(jobs, 'Technology Jobs');
+            } catch (error) {
+                showResult(`❌ Tech Jobs Test Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        async function testRemoteJobs() {
+            showResult('🔄 Testing remote jobs...', 'loading');
+            
+            try {
+                const jobAPI = new JobAPI();
+                const jobs = await jobAPI.fetchAdzunaJobs({ 
+                    what: 'remote',
+                    resultsPerPage: 15 
+                });
+                showJobs(jobs, 'Remote Jobs');
+            } catch (error) {
+                showResult(`❌ Remote Jobs Test Failed: ${error.message}`, 'error');
+            }
+        }
+        
+        function clearResults() {
+            resultsDiv.innerHTML = '';
+        }
+        
+        // Auto-run basic test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testBasicAPI, 1000);
+        });
+    </script>
+</body>
+</html>

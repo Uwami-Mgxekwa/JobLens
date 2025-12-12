@@ -176,6 +176,16 @@
     color: var(--text-secondary);
     font-weight: 600;
     margin-bottom: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.job-description {
+    line-height: 1.5;
+    margin: 1rem 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .job-details {

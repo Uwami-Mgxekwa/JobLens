@@ -284,7 +284,10 @@
 }
 
 .share-icon {
-    font-size: 1.1rem;
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+    transition: all 0.3s ease;
 }
 
 .share-menu {
@@ -334,9 +337,10 @@
 }
 
 .share-option-icon {
-    font-size: 1.1rem;
-    width: 20px;
-    text-align: center;
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    flex-shrink: 0;
 }
 
 .btn-save,
@@ -525,7 +529,8 @@
     }
     
     .share-option-icon {
-        font-size: 1.3rem;
+        width: 18px;
+        height: 18px;
     }
     
     /* Fix grid layouts on mobile */

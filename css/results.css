@@ -491,16 +491,42 @@
     
     .job-actions {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 1rem;
         margin-top: 1rem;
     }
     
-    .job-actions button,
-    .job-actions a {
+    .primary-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .primary-actions button,
+    .primary-actions a {
         width: 100%;
         text-align: center;
         padding: 0.8rem;
         font-size: 0.9rem;
+    }
+    
+    .share-actions {
+        align-self: center;
+    }
+    
+    .share-menu {
+        bottom: 55px;
+        right: -50px;
+        left: -50px;
+        min-width: auto;
+    }
+    
+    .share-option {
+        justify-content: center;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    
+    .share-option-icon {
+        font-size: 1.3rem;
     }
     
     /* Fix grid layouts on mobile */

@@ -140,8 +140,72 @@
 
                 <div class="form-step" data-step="3">
                     <div class="form-group">
-                        <label for="location">Preferred Location</label>
-                        <input type="text" id="location" name="location" placeholder="e.g., Cape Town, Remote, Anywhere" required>
+                        <label for="location">Preferred Work Location</label>
+                        <div class="location-options">
+                            <button type="button" class="location-btn" id="currentLocationBtn">
+                                <span class="location-icon">📍</span>
+                                <span>Use Current Location</span>
+                            </button>
+                            <div class="location-status" id="locationStatus" style="display: none;"></div>
+                        </div>
+                        
+                        <select id="location" name="location" required>
+                            <option value="">Select your preferred location</option>
+                            <optgroup label="🌍 Work Preferences">
+                                <option value="remote">Remote (Work from anywhere)</option>
+                                <option value="anywhere">Anywhere in South Africa</option>
+                                <option value="willing-to-relocate">Willing to relocate</option>
+                            </optgroup>
+                            <optgroup label="🏙️ Major Cities">
+                                <option value="johannesburg">Johannesburg</option>
+                                <option value="cape town">Cape Town</option>
+                                <option value="durban">Durban</option>
+                                <option value="pretoria">Pretoria</option>
+                                <option value="port elizabeth">Port Elizabeth</option>
+                                <option value="bloemfontein">Bloemfontein</option>
+                                <option value="east london">East London</option>
+                                <option value="pietermaritzburg">Pietermaritzburg</option>
+                                <option value="kimberley">Kimberley</option>
+                                <option value="polokwane">Polokwane</option>
+                                <option value="nelspruit">Nelspruit</option>
+                                <option value="rustenburg">Rustenburg</option>
+                                <option value="george">George</option>
+                                <option value="witbank">Witbank</option>
+                                <option value="vanderbijlpark">Vanderbijlpark</option>
+                            </optgroup>
+                            <optgroup label="🏘️ Other Areas">
+                                <option value="stellenbosch">Stellenbosch</option>
+                                <option value="sandton">Sandton</option>
+                                <option value="centurion">Centurion</option>
+                                <option value="germiston">Germiston</option>
+                                <option value="benoni">Benoni</option>
+                                <option value="springs">Springs</option>
+                                <option value="roodepoort">Roodepoort</option>
+                                <option value="soweto">Soweto</option>
+                            </optgroup>
+                        </select>
+                        
+                        <div class="work-arrangement">
+                            <label>Work Arrangement Preference:</label>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="workArrangement" value="no-preference" checked>
+                                    <span>No Preference</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="workArrangement" value="prefer-remote">
+                                    <span>Prefer Remote</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="workArrangement" value="prefer-office">
+                                    <span>Prefer Office</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="workArrangement" value="hybrid-only">
+                                    <span>Hybrid Only</span>
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div class="button-group">
                         <button type="button" class="btn-prev" onclick="prevStep()">Previous</button>

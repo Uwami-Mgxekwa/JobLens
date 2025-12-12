@@ -108,6 +108,123 @@
     font-weight: 600;
 }
 
+/* Enhanced Interests Grid */
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.interest-category {
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.interest-category h4 {
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.interest-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0.5rem;
+}
+
+.interest-checkbox {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.interest-checkbox:hover {
+    background: var(--bg-primary);
+}
+
+.interest-checkbox input[type="checkbox"] {
+    margin-right: 0.5rem;
+    accent-color: var(--primary-green);
+}
+
+.interest-checkbox input[type="checkbox"]:checked + span {
+    color: var(--primary-green);
+    font-weight: 600;
+}
+
+/* Location Options */
+.location-options {
+    margin-bottom: 1rem;
+}
+
+.location-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-secondary);
+    border: 2px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.location-btn:hover {
+    border-color: var(--primary-green);
+    background: var(--bg-primary);
+}
+
+.location-btn.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.location-status {
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.location-status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.location-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.work-arrangement {
+    margin-top: 1.5rem;
+}
+
+.work-arrangement label {
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
 .button-group {
     display: flex;
     gap: 1rem;

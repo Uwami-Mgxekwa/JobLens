@@ -282,6 +282,37 @@ function getFreshnessIcon(freshnessScore) {
     return '⏰';
 }
 
+// Show results status with cache and freshness info
+function showResultsStatus(jobs) {
+    const statusElement = document.getElementById('resultsStatus');
+    if (!statusElement) return;
+    
+    const freshJobs = jobs.filter(job => (job.freshnessScore || 0) >= 70).length;
+    const cachedJobs = jobs.filter(job => job.fromCache).length;
+    const realJobs = jobs.filter(job => job.source === 'Adzuna').length;
+    
+    let statusText = '';
+    let statusClass = '';
+    
+    if (realJobs > 0) {
+        statusText = `${realJobs} live jobs`;
+        if (freshJobs > 0) {
+            statusText += `, ${freshJobs} fresh`;
+        }
+        if (cachedJobs > 0) {
+            statusText += ` (${cachedJobs} cached for speed)`;
+        }
+        statusClass = 'status-live';
+    } else {
+        statusText = 'Sample data - complete questionnaire for real jobs';
+        statusClass = 'status-sample';
+    }
+    
+    statusElement.querySelector('.status-text').textContent = statusText;
+    statusElement.className = `results-status ${statusClass}`;
+    statusElement.style.display = 'flex';
+}
+
 // Display jobs with smart sorting
 function displayJobs(jobs) {
     const jobsGrid = document.getElementById('jobsGrid');

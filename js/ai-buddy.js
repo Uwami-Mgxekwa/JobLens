@@ -153,4 +153,124 @@ class AIBuddy {
             @keyframes pulse {
                 0% { transform: scale(1); opacity: 0.6; }
                 50% { transform: scale(1.2); opacity: 0.3; }
-   
+                100% { transform: scale(1.4); opacity: 0; }
+            }
+            
+            .chat-tooltip {
+                position: absolute;
+                bottom: 70px;
+                right: 0;
+                background: var(--bg-primary);
+                color: var(--text-primary);
+                padding: 0.75rem 1rem;
+                border-radius: 12px;
+                box-shadow: 0 4px 20px var(--shadow);
+                border: 1px solid var(--border-color);
+                font-size: 0.9rem;
+                white-space: nowrap;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+            
+            .chat-tooltip::after {
+                content: '';
+                position: absolute;
+                top: 100%;
+                right: 20px;
+                border: 8px solid transparent;
+                border-top-color: var(--bg-primary);
+            }
+            
+            .chat-toggle:hover .chat-tooltip {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .chat-window {
+                position: absolute;
+                bottom: 80px;
+                right: 0;
+                width: 350px;
+                height: 500px;
+                background: var(--bg-primary);
+                border-radius: 16px;
+                box-shadow: 0 10px 40px var(--shadow-hover);
+                border: 1px solid var(--border-color);
+                display: flex;
+                flex-direction: column;
+                transform: scale(0.8) translateY(20px);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .chat-window.open {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .chat-header {
+                padding: 1rem;
+                border-bottom: 1px solid var(--border-color);
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background: linear-gradient(135deg, var(--primary-green), var(--neon-green));
+                color: white;
+                border-radius: 16px 16px 0 0;
+            }
+            
+            .buddy-info {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+            }
+            
+            .buddy-avatar-small {
+                width: 40px;
+                height: 40px;
+                background: rgba(255,255,255,0.2);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.2rem;
+            }
+            
+            .buddy-details h4 {
+                margin: 0;
+                font-size: 1rem;
+                font-weight: 600;
+            }
+            
+            .status {
+                font-size: 0.8rem;
+                opacity: 0.9;
+            }
+            
+            .close-chat {
+                background: none;
+                border: none;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0.25rem;
+                border-radius: 4px;
+                transition: background 0.3s ease;
+            }
+            
+            .close-chat:hover {
+                background: rgba(255,255,255,0.2);
+            }
+            
+            .chat-messages {
+                flex: 1;
+                padding: 1rem;
+                overflow-y: auto;
+                scroll-behavior: smooth;
+            }
+            
+     

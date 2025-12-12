@@ -1,0 +1,99 @@
+{
+  "name": "JobLens - AI Job Matching",
+  "short_name": "JobLens",
+  "description": "Find your perfect job match with AI-powered job matching for South African professionals",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2ecc71",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "productivity", "lifestyle"],
+  "icons": [
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "144x144",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "152x152",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "180x180",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "167x167",
+      "type": "image/jpeg"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "form_factor": "wide"
+    },
+    {
+      "src": "assets/logo.jpeg",
+      "sizes": "750x1334",
+      "type": "image/jpeg",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Find Jobs",
+      "short_name": "Jobs",
+      "description": "Search for job opportunities",
+      "url": "/pages/results.html",
+      "icons": [
+        {
+          "src": "assets/logo.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Take Quiz",
+      "short_name": "Quiz",
+      "description": "Complete career questionnaire",
+      "url": "/pages/questionnaire.html",
+      "icons": [
+        {
+          "src": "assets/logo.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "View saved jobs and preferences",
+      "url": "/pages/dashboard.html",
+      "icons": [
+        {
+          "src": "assets/logo.jpeg",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+}

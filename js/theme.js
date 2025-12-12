@@ -29,6 +29,27 @@ function loadTheme() {
     }
 }
 
+// Safe theme toggle with null checks
+function safeToggleTheme() {
+    const html = document.documentElement;
+    const themeToggle = document.querySelector('.theme-toggle .theme-icon');
+    
+    if (!themeToggle) {
+        console.log('Theme toggle not found on this page');
+        return;
+    }
+    
+    if (html.getAttribute('data-theme') === 'dark') {
+        html.removeAttribute('data-theme');
+        themeToggle.textContent = '◐';
+        localStorage.setItem('theme', 'light');
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '◑';
+        localStorage.setItem('theme', 'dark');
+    }
+}
+
 // Toggle mobile menu (legacy function - hamburger removed)
 function toggleMenu() {
     // Function kept for compatibility but hamburger menu was removed

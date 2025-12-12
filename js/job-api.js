@@ -1,9 +1,9 @@
 // JobLens API Integration
 class JobAPI {
     constructor() {
-        // Adzuna API credentials (get from https://developer.adzuna.com/)
-        this.adzunaAppId = 'YOUR_APP_ID'; // Replace with your credentials
-        this.adzunaApiKey = 'YOUR_API_KEY';
+        // Adzuna API credentials
+        this.adzunaAppId = '8fa2433c';
+        this.adzunaApiKey = '7bfe90f41e1a4956c6107888929dd5ee';
         this.baseUrl = 'https://api.adzuna.com/v1/api/jobs/za/search';
     }
 

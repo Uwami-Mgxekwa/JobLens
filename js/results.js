@@ -14,18 +14,41 @@ let allJobs = [];
 let filteredJobs = [];
 let savedJobs = [];
 
-// Load jobs from JSON file
+// Load jobs from API and fallback sources
 async function loadJobs() {
     try {
-        console.log('Loading jobs from:', '../assets/jobs.json');
-        const response = await fetch('../assets/jobs.json');
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+        console.log('Loading real jobs from Adzuna API...');
+        
+        // Initialize job API
+        const jobAPI = new JobAPI();
+        
+        // Search for jobs based on user preferences
+        const realJobs = await jobAPI.searchJobs(userPreferences, {
+            resultsPerPage: 50,
+            page: 1
+        });
+        
+        if (realJobs && realJobs.length > 0) {
+            allJobs = realJobs;
+            console.log('✅ Real jobs loaded successfully:', allJobs.length, 'jobs from Adzuna');
+            return;
         }
-        allJobs = await response.json();
-        console.log('Jobs loaded successfully:', allJobs.length, 'jobs');
+        
+        // If API fails, try loading from local JSON
+        console.log('API returned no results, trying local jobs.json...');
+        const response = await fetch('../assets/jobs.json');
+        if (response.ok) {
+            allJobs = await response.json();
+            console.log('📁 Local jobs loaded:', allJobs.length, 'jobs');
+            return;
+        }
+        
+        throw new Error('Both API and local data failed');
+        
     } catch (error) {
         console.error('Error loading jobs:', error);
+        console.log('🔄 Using fallback sample data');
+        
         // Fallback sample data
         allJobs = [
             {
@@ -38,7 +61,8 @@ async function loadJobs() {
                 industry: "technology",
                 skills: ["javascript", "react", "css"],
                 description: "Build amazing web applications",
-                link: "https://example.com/job1"
+                link: "https://example.com/job1",
+                source: "Sample Data"
             },
             {
                 id: 2,
@@ -50,7 +74,8 @@ async function loadJobs() {
                 industry: "design",
                 skills: ["figma", "ui design", "user research"],
                 description: "Create beautiful user experiences",
-                link: "https://example.com/job2"
+                link: "https://example.com/job2",
+                source: "Sample Data"
             },
             {
                 id: 3,
@@ -62,7 +87,8 @@ async function loadJobs() {
                 industry: "technology",
                 skills: ["python", "sql", "data visualization"],
                 description: "Analyze data and provide insights. Competitive salary package.",
-                link: "https://example.com/job3"
+                link: "https://example.com/job3",
+                source: "Sample Data"
             },
             {
                 id: 4,
@@ -74,7 +100,8 @@ async function loadJobs() {
                 industry: "technology",
                 skills: ["product strategy", "agile", "communication"],
                 description: "Lead product development",
-                link: "https://example.com/job4"
+                link: "https://example.com/job4",
+                source: "Sample Data"
             },
             {
                 id: 5,
@@ -86,7 +113,8 @@ async function loadJobs() {
                 industry: "marketing",
                 skills: ["seo", "content marketing", "social media"],
                 description: "Drive marketing campaigns",
-                link: "https://example.com/job5"
+                link: "https://example.com/job5",
+                source: "Sample Data"
             }
         ];
     }
@@ -176,6 +204,10 @@ function createJobCard(job) {
                     <span class="job-detail-icon">#</span>
                     <span>${job.industry.charAt(0).toUpperCase() + job.industry.slice(1)}</span>
                 </div>
+                ${job.source ? `<div class="job-detail">
+                    <span class="job-detail-icon">🔗</span>
+                    <span>${job.source}</span>
+                </div>` : ''}
             </div>
             <p>${job.description}</p>
             <div class="job-actions">

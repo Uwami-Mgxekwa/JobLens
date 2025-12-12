@@ -15,6 +15,12 @@ class AIBuddy {
         this.loadConversationHistory();
     }
 
+    getAssetPath() {
+        // Determine if we're in a subfolder (pages/) or root
+        const path = window.location.pathname;
+        return path.includes('/pages/') ? '../' : '';
+    }
+
     loadUserData() {
         try {
             const prefs = localStorage.getItem('userPreferences');
@@ -31,7 +37,7 @@ class AIBuddy {
         chatWidget.innerHTML = `
             <div class="chat-toggle" id="chatToggle">
                 <div class="buddy-avatar">
-                    <img src="assets/bot.png" alt="Career Buddy" class="avatar-image">
+                    <img src="${this.getAssetPath()}assets/bot.png" alt="Career Buddy" class="avatar-image">
                     <div class="pulse-ring"></div>
                 </div>
                 <div class="chat-tooltip">Hi! I'm your career buddy. Ask me anything! 👋</div>
@@ -40,7 +46,9 @@ class AIBuddy {
             <div class="chat-window" id="chatWindow">
                 <div class="chat-header">
                     <div class="buddy-info">
-                        <div class="buddy-avatar-small">🎯</div>
+                        <div class="buddy-avatar-small">
+                            <img src="${this.getAssetPath()}assets/bot.png" alt="Career Buddy" class="avatar-image-small">
+                        </div>
                         <div class="buddy-details">
                             <h4>Career Buddy</h4>
                             <span class="status">Online • Ready to help</span>
@@ -132,6 +140,21 @@ class AIBuddy {
             .avatar-icon {
                 font-size: 1.8rem;
                 filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            }
+            
+            .avatar-image {
+                width: 35px;
+                height: 35px;
+                border-radius: 50%;
+                object-fit: cover;
+                filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+            }
+            
+            .avatar-image-small {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                object-fit: cover;
             }
             
             .pulse-ring {

@@ -142,10 +142,15 @@
     </footer>
 
     <script>
-        // Theme toggle functionality
-        function toggleTheme() {
+        // Safe theme toggle functionality
+        function safeToggleTheme() {
             const html = document.documentElement;
             const themeToggle = document.querySelector('.theme-toggle .theme-icon');
+            
+            if (!themeToggle) {
+                console.log('Theme toggle not found on this page');
+                return;
+            }
             
             if (html.getAttribute('data-theme') === 'dark') {
                 html.removeAttribute('data-theme');

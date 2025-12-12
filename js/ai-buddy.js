@@ -37,7 +37,7 @@ class AIBuddy {
         chatWidget.innerHTML = `
             <div class="chat-toggle" id="chatToggle">
                 <div class="buddy-avatar">
-                    <img src="${this.getAssetPath()}assets/bot.png" alt="Career Buddy" class="avatar-image">
+                    <img src="${this.getAssetPath()}assets/bot.jpeg" alt="Career Buddy" class="avatar-image">
                     <div class="pulse-ring"></div>
                 </div>
                 <div class="chat-tooltip">Hi! I'm your career buddy. Ask me anything! 👋</div>
@@ -47,7 +47,7 @@ class AIBuddy {
                 <div class="chat-header">
                     <div class="buddy-info">
                         <div class="buddy-avatar-small">
-                            <img src="${this.getAssetPath()}assets/bot.png" alt="Career Buddy" class="avatar-image-small">
+                            <img src="${this.getAssetPath()}assets/bot.jpeg" alt="Career Buddy" class="avatar-image-small">
                         </div>
                         <div class="buddy-details">
                             <h4>Career Buddy</h4>

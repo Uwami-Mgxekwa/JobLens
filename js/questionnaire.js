@@ -98,29 +98,35 @@ function initGeolocation() {
                 },
                 (error) => {
                     let message = 'Location access denied. Please select manually.';
+                    let icon = '❌';
+                    
                     switch(error.code) {
                         case error.PERMISSION_DENIED:
-                            message = 'Location access denied. Please select manually.';
+                            message = 'Location access denied. Please enable location access and try again.';
+                            icon = '🚫';
                             break;
                         case error.POSITION_UNAVAILABLE:
-                            message = 'Location unavailable. Please select manually.';
+                            message = 'Location unavailable. Please check your GPS and try again.';
+                            icon = '📡';
                             break;
                         case error.TIMEOUT:
-                            message = 'Location request timed out. Please select manually.';
+                            message = 'Location request timed out. Please try again or select manually.';
+                            icon = '⏰';
                             break;
                         default:
                             message = 'Location error occurred. Please select manually.';
+                            icon = '❌';
                             break;
                     }
                     
-                    showLocationStatus(`❌ ${message}`, 'error');
+                    showLocationStatus(`${icon} ${message}`, 'error');
                     this.classList.remove('loading');
-                    this.innerHTML = '<span class="location-icon">📍</span><span>Use Current Location</span>';
+                    this.innerHTML = '<span class="location-icon">📍</span><span>Try Again</span>';
                 },
                 { 
-                    timeout: 15000, 
-                    enableHighAccuracy: false, // Less accurate but faster
-                    maximumAge: 300000 // 5 minutes cache
+                    timeout: 20000, // Increased to 20 seconds
+                    enableHighAccuracy: true, // More accurate
+                    maximumAge: 600000 // 10 minutes cache
                 }
             );
         });

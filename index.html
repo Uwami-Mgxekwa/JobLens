@@ -173,32 +173,60 @@
             hamburger.classList.toggle('active');
         }
 
-        // Initialize theme and menu functionality on page load
+        // Counter animation
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + (target === 95 ? '%' : '+');
+            }, 16);
+        }
+
+        // CTA button interaction
+        function initCTAButton() {
+            const ctaBtn = document.getElementById('startJourneyBtn');
+            if (ctaBtn) {
+                ctaBtn.addEventListener('click', function(e) {
+                    // Add loading state
+                    const btnText = this.querySelector('.btn-text');
+                    const btnIcon = this.querySelector('.btn-icon');
+                    
+                    btnText.textContent = 'Loading...';
+                    btnIcon.textContent = '⏳';
+                    
+                    // Small delay for UX
+                    setTimeout(() => {
+                        window.location.href = 'pages/questionnaire.html';
+                    }, 500);
+                });
+            }
+        }
+
+        // Initialize everything on page load
         document.addEventListener('DOMContentLoaded', function() {
             loadTheme();
+            initCTAButton();
             
-            // Add click listeners to nav links to close menu
-            const navLinks = document.querySelectorAll('.nav-menu a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    const navMenu = document.querySelector('.nav-menu');
-                    const hamburger = document.querySelector('.hamburger');
-                    navMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
+            // Animate counters when they come into view
+            const counters = document.querySelectorAll('.trust-number');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const target = parseInt(entry.target.dataset.count);
+                        animateCounter(entry.target, target);
+                        observer.unobserve(entry.target);
+                    }
                 });
             });
             
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                const navMenu = document.querySelector('.nav-menu');
-                const hamburger = document.querySelector('.hamburger');
-                const headerControls = document.querySelector('.header-controls');
-                
-                if (!headerControls.contains(e.target) && navMenu.classList.contains('active')) {
-                    navMenu.classList.remove('active');
-                    hamburger.classList.remove('active');
-                }
-            });
+            counters.forEach(counter => observer.observe(counter));
         });
     </script>
 </body>

@@ -1,7 +1,7 @@
 // JobLens Service Worker
-const CACHE_NAME = 'joblens-v1.3';
-const STATIC_CACHE = 'joblens-static-v1.3';
-const DYNAMIC_CACHE = 'joblens-dynamic-v1.3';
+const CACHE_NAME = 'joblens-v1.4';
+const STATIC_CACHE = 'joblens-static-v1.4';
+const DYNAMIC_CACHE = 'joblens-dynamic-v1.4';
 
 // Files to cache immediately
 const STATIC_FILES = [
@@ -149,16 +149,14 @@ async function handleStaticRequest(request) {
 
 // Handle API requests with caching strategy
 async function handleApiRequest(request) {
-    const cacheKey = `api-${request.url}`;
-    
     try {
         // Try network first
         const networkResponse = await fetch(request);
         
         if (networkResponse.ok) {
-            // Cache successful API responses
+            // Cache successful API responses using the original request
             const cache = await caches.open(DYNAMIC_CACHE);
-            cache.put(cacheKey, networkResponse.clone());
+            cache.put(request, networkResponse.clone());
             return networkResponse;
         }
         
@@ -167,8 +165,8 @@ async function handleApiRequest(request) {
     } catch (error) {
         console.log('📡 API request failed, trying cache...');
         
-        // Fallback to cache
-        const cachedResponse = await caches.match(cacheKey);
+        // Fallback to cache using the original request
+        const cachedResponse = await caches.match(request);
         if (cachedResponse) {
             console.log('📦 Serving API response from cache');
             return cachedResponse;

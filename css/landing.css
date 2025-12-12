@@ -391,6 +391,25 @@
     }
 }
 
+/* Hide job preview cards on mobile and tablet */
+@media (max-width: 1024px) {
+    .hero-section {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        text-align: center;
+    }
+    
+    .hero-visual {
+        display: none;
+    }
+    
+    .hero-main {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
     .hero-features {
         grid-template-columns: repeat(2, 1fr);

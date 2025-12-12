@@ -254,11 +254,32 @@ function createJobCard(job) {
             </div>
             <p class="job-description">${job.description}</p>
             <div class="job-actions">
-                ${isSaved ? 
-                    `<button class="btn-unsave" onclick="unsaveJob(${job.id})">Unsave</button>` :
-                    `<button class="btn-save" onclick="saveJob(${job.id})">Save Job</button>`
-                }
-                <a href="${job.link}" target="_blank" class="btn-view">View Job</a>
+                <div class="primary-actions">
+                    ${isSaved ? 
+                        `<button class="btn-unsave" onclick="unsaveJob(${job.id})">Unsave</button>` :
+                        `<button class="btn-save" onclick="saveJob(${job.id})">Save Job</button>`
+                    }
+                    <a href="${job.link}" target="_blank" class="btn-view">View Job</a>
+                </div>
+                <div class="share-actions">
+                    <button class="btn-share" onclick="toggleShareMenu(${job.id})" title="Share Job">
+                        <span class="share-icon">📤</span>
+                    </button>
+                    <div class="share-menu" id="shareMenu${job.id}" style="display: none;">
+                        <button class="share-option" onclick="copyJobLink(${job.id})" title="Copy Link">
+                            <span class="share-option-icon">🔗</span>
+                            <span>Copy Link</span>
+                        </button>
+                        <button class="share-option" onclick="shareViaWhatsApp(${job.id})" title="Share on WhatsApp">
+                            <span class="share-option-icon">💬</span>
+                            <span>WhatsApp</span>
+                        </button>
+                        <button class="share-option" onclick="shareViaEmail(${job.id})" title="Share via Email">
+                            <span class="share-option-icon">📧</span>
+                            <span>Email</span>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     `;

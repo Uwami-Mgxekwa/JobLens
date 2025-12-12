@@ -141,18 +141,18 @@ class NetworkStatus {
         if (this.isOnline) {
             this.statusIndicator.className = 'network-status online show';
             icon.textContent = '🟢';
-            text.textContent = 'Online - Live job data';
+            text.textContent = 'Back online - Live job data';
             
-            // Hide after 3 seconds if online
+            // Hide after 4 seconds when back online
             setTimeout(() => {
                 this.statusIndicator.classList.remove('show');
-            }, 3000);
+            }, 4000);
         } else {
             this.statusIndicator.className = 'network-status offline show';
             icon.textContent = '🔴';
-            text.textContent = 'Offline - Showing cached jobs';
+            text.textContent = 'No connection - Showing cached jobs';
             
-            // Keep showing while offline
+            // Keep showing while offline (don't auto-hide)
         }
     }
 

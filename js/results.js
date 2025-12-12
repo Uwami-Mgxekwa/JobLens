@@ -226,6 +226,12 @@ function displayJobs(jobs) {
     const jobsGrid = document.getElementById('jobsGrid');
     const noResults = document.getElementById('noResults');
     const jobCount = document.getElementById('jobCount');
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    
+    // Hide loading indicator
+    if (loadingIndicator) {
+        loadingIndicator.style.display = 'none';
+    }
     
     if (jobs.length === 0) {
         jobsGrid.style.display = 'none';

@@ -736,4 +736,56 @@ Want to practice answering any specific questions?`;
 **Medium-term (6-18 months):**
 - Develop leadership skills
 - Mentor junior colleagues  
-- 
+- Lead a project or initiative
+- Expand your network outside the company
+
+**Long-term (1-3 years):**
+- Consider additional certifications
+- Explore lateral moves for broader experience
+- Build your personal brand
+- Stay updated on industry trends
+
+**Remember:** Career growth isn't always vertical. Sometimes the best opportunities come from sideways moves that broaden your skills!
+
+What specific career goal are you working toward?`;
+        }
+        
+        // Skills development
+        if (lowerMessage.includes('skills') || lowerMessage.includes('learn') || lowerMessage.includes('training')) {
+            return `Continuous learning is key to career success! 📚 Here are **high-impact skills** to develop:
+
+**Technical skills (if applicable):**
+- Cloud computing (AWS, Azure, Google Cloud)
+- Data analysis (Python, R, SQL, Excel)
+- Digital marketing (SEO, Google Analytics, social media)
+- Project management tools (Asana, Jira, Monday.com)
+
+**Soft skills (universal):**
+- **Communication** - written, verbal, presentation
+- **Leadership** - even if you're not a manager yet
+- **Problem-solving** - critical thinking and creativity
+- **Emotional intelligence** - understanding people and situations
+- **Adaptability** - thriving in change
+
+**Learning resources:**
+- **Free:** Coursera, edX, YouTube, LinkedIn Learning
+- **Paid:** Udemy, Pluralsight, MasterClass
+- **Hands-on:** Volunteer projects, side hustles, hackathons
+
+What skill would you like to develop first? I can suggest specific resources!`;
+        }
+        
+        // Networking advice
+        if (lowerMessage.includes('network') || lowerMessage.includes('connections')) {
+            return `Networking isn't about using people - it's about **building genuine relationships**! 🤝
+
+**Online networking:**
+- **LinkedIn:** Connect with colleagues, classmates, industry leaders
+- **Twitter:** Follow and engage with thought leaders
+- **Industry forums:** Join discussions in your field
+- **Professional groups:** Facebook groups, Slack communities
+
+**Offline networking:**
+- **Industry events:** Conferences, meetups, workshops
+- **Alumni networks:** Reach out to school connections
+- **Profe

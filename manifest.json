@@ -76,7 +76,7 @@
       "url": "/pages/results.html",
       "icons": [
         {
-          "src": "assets/logo.jpeg",
+          "src": "assets/icons/icon-96x96.jpeg",
           "sizes": "96x96"
         }
       ]
@@ -88,7 +88,7 @@
       "url": "/pages/questionnaire.html",
       "icons": [
         {
-          "src": "assets/logo.jpeg",
+          "src": "assets/icons/icon-96x96.jpeg",
           "sizes": "96x96"
         }
       ]
@@ -100,7 +100,7 @@
       "url": "/pages/dashboard.html",
       "icons": [
         {
-          "src": "assets/logo.jpeg",
+          "src": "assets/icons/icon-96x96.jpeg",
           "sizes": "96x96"
         }
       ]

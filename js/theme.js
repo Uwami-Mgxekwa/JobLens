@@ -62,10 +62,15 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Add click listeners to nav links (if they exist)
     const navLinks = document.querySelectorAll('nav a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            // Add active state handling if needed
-            console.log('Navigation link clicked:', link.href);
+    if (navLinks.length > 0) {
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                // Add active state handling if needed
+                console.log('Navigation link clicked:', link.href);
+            });
         });
-    });
+    }
+    
+    // Add safe theme toggle to window for global access
+    window.safeToggleTheme = safeToggleTheme;
 });

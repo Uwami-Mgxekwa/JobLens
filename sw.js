@@ -171,3 +171,99 @@ async function handleApiRequest(request) {
             }
         );
     }
+}
+
+// Background sync for saving jobs when offline
+self.addEventListener('sync', (event) => {
+    console.log('🔄 Background sync triggered:', event.tag);
+    
+    if (event.tag === 'save-job') {
+        event.waitUntil(syncSavedJobs());
+    }
+});
+
+// Sync saved jobs when back online
+async function syncSavedJobs() {
+    try {
+        // Get pending saves from IndexedDB or localStorage
+        const pendingSaves = await getPendingSaves();
+        
+        for (const save of pendingSaves) {
+            // Process each pending save
+            await processSave(save);
+        }
+        
+        console.log('✅ Saved jobs synced successfully');
+    } catch (error) {
+        console.error('❌ Failed to sync saved jobs:', error);
+    }
+}
+
+// Push notification handler
+self.addEventListener('push', (event) => {
+    console.log('📬 Push notification received');
+    
+    const options = {
+        body: 'New job matches found for you!',
+        icon: '/assets/logo.jpeg',
+        badge: '/assets/logo.jpeg',
+        vibrate: [200, 100, 200],
+        data: {
+            url: '/pages/results.html'
+        },
+        actions: [
+            {
+                action: 'view',
+                title: 'View Jobs',
+                icon: '/assets/logo.jpeg'
+            },
+            {
+                action: 'dismiss',
+                title: 'Dismiss'
+            }
+        ]
+    };
+    
+    event.waitUntil(
+        self.registration.showNotification('JobLens - New Matches!', options)
+    );
+});
+
+// Notification click handler
+self.addEventListener('notificationclick', (event) => {
+    console.log('🔔 Notification clicked:', event.action);
+    
+    event.notification.close();
+    
+    if (event.action === 'view') {
+        event.waitUntil(
+            clients.openWindow('/pages/results.html')
+        );
+    }
+});
+
+// Network status monitoring
+self.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'NETWORK_STATUS') {
+        // Broadcast network status to all clients
+        self.clients.matchAll().then((clients) => {
+            clients.forEach((client) => {
+                client.postMessage({
+                    type: 'NETWORK_STATUS_UPDATE',
+                    online: navigator.onLine
+                });
+            });
+        });
+    }
+});
+
+// Utility functions
+async function getPendingSaves() {
+    // In a real implementation, this would use IndexedDB
+    return [];
+}
+
+async function processSave(save) {
+    // Process individual save operation
+    console.log('Processing save:', save);
+}

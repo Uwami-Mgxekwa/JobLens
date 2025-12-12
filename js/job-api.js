@@ -5,6 +5,119 @@ class JobAPI {
         this.adzunaAppId = '8fa2433c';
         this.adzunaApiKey = '7bfe90f41e1a4956c6107888929dd5ee';
         this.baseUrl = 'https://api.adzuna.com/v1/api/jobs/za/search';
+        
+        // Cache settings
+        this.cachePrefix = 'joblens_cache_';
+        this.cacheExpiry = 30 * 60 * 1000; // 30 minutes
+        this.maxCacheSize = 10; // Maximum number of cached searches
+        
+        // Initialize cache cleanup
+        this.cleanupExpiredCache();
+    }
+
+    // Cache management methods
+    generateCacheKey(userPreferences, maxJobs) {
+        const key = JSON.stringify({
+            prefs: userPreferences ? {
+                skills: userPreferences.skills?.slice(0, 3),
+                interests: userPreferences.interests,
+                location: userPreferences.location,
+                salaryRange: userPreferences.salaryRange
+            } : null,
+            maxJobs
+        });
+        return btoa(key).substring(0, 20); // Base64 encode and truncate
+    }
+
+    saveToCache(key, data) {
+        try {
+            const cacheData = {
+                data: data,
+                timestamp: Date.now(),
+                key: key
+            };
+            
+            localStorage.setItem(this.cachePrefix + key, JSON.stringify(cacheData));
+            
+            // Manage cache size
+            this.manageCacheSize();
+            
+            console.log('💾 Jobs cached successfully:', data.length, 'jobs');
+        } catch (error) {
+            console.warn('Cache save failed:', error);
+        }
+    }
+
+    getFromCache(key) {
+        try {
+            const cached = localStorage.getItem(this.cachePrefix + key);
+            if (!cached) return null;
+            
+            const cacheData = JSON.parse(cached);
+            const age = Date.now() - cacheData.timestamp;
+            
+            if (age > this.cacheExpiry) {
+                localStorage.removeItem(this.cachePrefix + key);
+                return null;
+            }
+            
+            return cacheData.data;
+        } catch (error) {
+            console.warn('Cache read failed:', error);
+            return null;
+        }
+    }
+
+    cleanupExpiredCache() {
+        try {
+            const keys = Object.keys(localStorage);
+            const cacheKeys = keys.filter(key => key.startsWith(this.cachePrefix));
+            
+            cacheKeys.forEach(key => {
+                const cached = localStorage.getItem(key);
+                if (cached) {
+                    const cacheData = JSON.parse(cached);
+                    const age = Date.now() - cacheData.timestamp;
+                    
+                    if (age > this.cacheExpiry) {
+                        localStorage.removeItem(key);
+                    }
+                }
+            });
+        } catch (error) {
+            console.warn('Cache cleanup failed:', error);
+        }
+    }
+
+    manageCacheSize() {
+        try {
+            const keys = Object.keys(localStorage);
+            const cacheKeys = keys.filter(key => key.startsWith(this.cachePrefix));
+            
+            if (cacheKeys.length > this.maxCacheSize) {
+                // Remove oldest cache entries
+                const cacheEntries = cacheKeys.map(key => {
+                    const data = JSON.parse(localStorage.getItem(key));
+                    return { key, timestamp: data.timestamp };
+                }).sort((a, b) => a.timestamp - b.timestamp);
+                
+                const toRemove = cacheEntries.slice(0, cacheEntries.length - this.maxCacheSize);
+                toRemove.forEach(entry => localStorage.removeItem(entry.key));
+            }
+        } catch (error) {
+            console.warn('Cache size management failed:', error);
+        }
+    }
+
+    clearCache() {
+        try {
+            const keys = Object.keys(localStorage);
+            const cacheKeys = keys.filter(key => key.startsWith(this.cachePrefix));
+            cacheKeys.forEach(key => localStorage.removeItem(key));
+            console.log('🗑️ Cache cleared');
+        } catch (error) {
+            console.warn('Cache clear failed:', error);
+        }
     }
 
     // Fetch jobs from Adzuna API

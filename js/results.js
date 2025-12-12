@@ -232,23 +232,23 @@ function createJobCard(job) {
             <p class="job-company">${job.company}</p>
             <div class="job-details">
                 <div class="job-detail">
-                    <span class="job-detail-icon">📍</span>
+                    <span class="job-detail-icon">●</span>
                     <span>${job.location}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">💰</span>
+                    <span class="job-detail-icon">R</span>
                     <span>${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">🏢</span>
+                    <span class="job-detail-icon">■</span>
                     <span>${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}</span>
                 </div>
                 <div class="job-detail">
-                    <span class="job-detail-icon">🏷️</span>
+                    <span class="job-detail-icon">▲</span>
                     <span>${job.industry.charAt(0).toUpperCase() + job.industry.slice(1)}</span>
                 </div>
                 ${job.source ? `<div class="job-detail">
-                    <span class="job-detail-icon">🔗</span>
+                    <span class="job-detail-icon">→</span>
                     <span>${job.source}</span>
                 </div>` : ''}
             </div>
@@ -263,19 +263,19 @@ function createJobCard(job) {
                 </div>
                 <div class="share-actions">
                     <button class="btn-share" onclick="toggleShareMenu('${job.id}')" title="Share Job">
-                        <span class="share-icon">📤</span>
+                        <span class="share-icon">↗</span>
                     </button>
                     <div class="share-menu" id="shareMenu${job.id}" style="display: none;">
                         <button class="share-option" onclick="copyJobLink('${job.id}')" title="Copy Link">
-                            <span class="share-option-icon">🔗</span>
+                            <span class="share-option-icon">⧉</span>
                             <span>Copy Link</span>
                         </button>
                         <button class="share-option" onclick="shareViaWhatsApp('${job.id}')" title="Share on WhatsApp">
-                            <span class="share-option-icon">💬</span>
+                            <span class="share-option-icon">W</span>
                             <span>WhatsApp</span>
                         </button>
                         <button class="share-option" onclick="shareViaEmail('${job.id}')" title="Share via Email">
-                            <span class="share-option-icon">📧</span>
+                            <span class="share-option-icon">@</span>
                             <span>Email</span>
                         </button>
                     </div>
@@ -410,19 +410,20 @@ window.shareViaWhatsApp = function shareViaWhatsApp(jobId) {
     const job = allJobs.find(j => j.id == jobId);
     if (!job) return;
     
-    const message = `🎯 Check out this job opportunity I found on JobLens!
+    const message = `Check out this job opportunity I found on JobLens!
 
 *${job.title}* at *${job.company}*
-📍 ${job.location}
-💰 ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}
-🏢 ${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}
+Location: ${job.location}
+Salary: ${job.salary ? `R${job.salary.min.toLocaleString()} - R${job.salary.max.toLocaleString()}/month` : 'Salary not disclosed'}
+Work Type: ${job.workType.charAt(0).toUpperCase() + job.workType.slice(1)}
 
 ${job.description.substring(0, 100)}...
 
 Apply here: ${job.link}
 
 ---
-Find your perfect job match at JobLens! 🚀`;
+Find your perfect job match at JobLens!
+Powered by Brelinx - https://brelinx.com`;
     
     const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
@@ -452,7 +453,10 @@ ${job.description}
 Apply here: ${job.link}
 
 ---
-This job was found using JobLens - an AI-powered job matching platform for South African professionals. Find your perfect career match at: ${window.location.origin}
+This job was found using JobLens - an AI-powered job matching platform for South African professionals. 
+
+Find your perfect career match at: ${window.location.origin}
+Powered by Brelinx - https://brelinx.com
 
 Best regards!`;
     

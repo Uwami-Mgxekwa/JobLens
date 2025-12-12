@@ -56,14 +56,14 @@
   ],
   "screenshots": [
     {
-      "src": "assets/logo.jpeg",
-      "sizes": "1280x720",
+      "src": "assets/icons/icon-512x512.jpeg",
+      "sizes": "512x512",
       "type": "image/jpeg",
       "form_factor": "wide"
     },
     {
-      "src": "assets/logo.jpeg",
-      "sizes": "750x1334",
+      "src": "assets/icons/icon-384x384.jpeg",
+      "sizes": "384x384",
       "type": "image/jpeg",
       "form_factor": "narrow"
     }

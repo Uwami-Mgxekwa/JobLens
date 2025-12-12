@@ -164,27 +164,182 @@ class JobAPI {
             .substring(0, 300) + (description.length > 300 ? '...' : '');
     }
 
-    // Search jobs with user preferences
-    async searchJobs(userPreferences = null, searchParams = {}) {
-        const params = { ...searchParams };
+    // Enhanced search with multiple strategies for better job variety
+    async searchJobsWithVariety(userPreferences = null, maxJobs = 100) {
+        console.log('🔍 Searching for diverse job opportunities...');
         
-        if (userPreferences) {
-            // Use user preferences to enhance search
-            if (userPreferences.skills && userPreferences.skills.length > 0) {
-                params.what = userPreferences.skills.join(' OR ');
-            }
-            
-            if (userPreferences.location && userPreferences.location !== 'anywhere') {
-                params.where = userPreferences.location;
-            }
-            
-            if (userPreferences.salaryRange) {
-                params.salaryMin = userPreferences.salaryRange.min * 12; // Convert monthly to annual
-                params.salaryMax = userPreferences.salaryRange.max * 12;
+        let allJobs = [];
+        const searchStrategies = this.generateSearchStrategies(userPreferences);
+        
+        // Check cache first
+        const cacheKey = this.generateCacheKey(userPreferences, maxJobs);
+        const cachedJobs = this.getFromCache(cacheKey);
+        if (cachedJobs) {
+            console.log('📦 Using cached jobs:', cachedJobs.length);
+            return cachedJobs;
+        }
+        
+        // Execute multiple search strategies
+        for (const strategy of searchStrategies) {
+            try {
+                console.log(`🎯 Searching: ${strategy.description}`);
+                const jobs = await this.fetchAdzunaJobs(strategy.params);
+                allJobs = allJobs.concat(jobs);
+                
+                // Stop if we have enough jobs
+                if (allJobs.length >= maxJobs) break;
+                
+                // Small delay to respect rate limits
+                await this.delay(200);
+                
+            } catch (error) {
+                console.warn(`⚠️ Strategy failed: ${strategy.description}`, error);
             }
         }
         
-        return await this.fetchAdzunaJobs(params);
+        // Remove duplicates and limit results
+        const uniqueJobs = this.removeDuplicates(allJobs).slice(0, maxJobs);
+        
+        // Cache the results
+        this.saveToCache(cacheKey, uniqueJobs);
+        
+        console.log('✅ Job search complete:', uniqueJobs.length, 'unique jobs found');
+        return uniqueJobs;
+    }
+
+    // Generate diverse search strategies based on user preferences
+    generateSearchStrategies(userPreferences) {
+        const strategies = [];
+        
+        // Base search terms for South African job market
+        const baseTerms = [
+            'developer software engineer programmer',
+            'manager analyst coordinator',
+            'designer creative marketing',
+            'sales consultant representative',
+            'administrator assistant clerk',
+            'technician specialist expert',
+            'consultant advisor analyst',
+            'executive director manager'
+        ];
+        
+        // Location-based searches
+        const saLocations = [
+            'cape town', 'johannesburg', 'durban', 'pretoria', 
+            'port elizabeth', 'bloemfontein', 'remote'
+        ];
+        
+        // Industry-specific terms
+        const industries = {
+            technology: ['javascript', 'python', 'java', 'react', 'angular', 'node.js', 'php', 'c#'],
+            finance: ['accounting', 'financial', 'banking', 'investment', 'audit'],
+            healthcare: ['nurse', 'medical', 'healthcare', 'clinical', 'pharmacy'],
+            education: ['teacher', 'education', 'training', 'academic', 'tutor'],
+            marketing: ['marketing', 'digital', 'social media', 'content', 'seo'],
+            sales: ['sales', 'business development', 'account manager', 'retail'],
+            engineering: ['engineer', 'mechanical', 'electrical', 'civil', 'industrial'],
+            design: ['designer', 'graphic', 'ui', 'ux', 'creative', 'art']
+        };
+        
+        // Strategy 1: User preference-based search
+        if (userPreferences) {
+            if (userPreferences.skills && userPreferences.skills.length > 0) {
+                strategies.push({
+                    description: 'User skills-based search',
+                    params: {
+                        what: userPreferences.skills.slice(0, 3).join(' OR '),
+                        where: userPreferences.location !== 'anywhere' ? userPreferences.location : '',
+                        resultsPerPage: 25
+                    }
+                });
+            }
+            
+            if (userPreferences.interests && userPreferences.interests.length > 0) {
+                userPreferences.interests.forEach(interest => {
+                    if (industries[interest]) {
+                        strategies.push({
+                            description: `${interest} industry search`,
+                            params: {
+                                what: industries[interest].slice(0, 3).join(' OR '),
+                                resultsPerPage: 15
+                            }
+                        });
+                    }
+                });
+            }
+        }
+        
+        // Strategy 2: General broad searches
+        baseTerms.forEach(term => {
+            strategies.push({
+                description: `General search: ${term}`,
+                params: {
+                    what: term,
+                    resultsPerPage: 15
+                }
+            });
+        });
+        
+        // Strategy 3: Location-specific searches
+        saLocations.forEach(location => {
+            strategies.push({
+                description: `Location search: ${location}`,
+                params: {
+                    where: location,
+                    resultsPerPage: 12
+                }
+            });
+        });
+        
+        // Strategy 4: Recent high-paying jobs
+        strategies.push({
+            description: 'High-paying positions',
+            params: {
+                salaryMin: 600000, // R50k+ monthly
+                resultsPerPage: 20
+            }
+        });
+        
+        // Strategy 5: Remote work opportunities
+        strategies.push({
+            description: 'Remote work opportunities',
+            params: {
+                what: 'remote work from home',
+                resultsPerPage: 20
+            }
+        });
+        
+        // Shuffle strategies for variety
+        return this.shuffleArray(strategies).slice(0, 8); // Limit to 8 strategies to manage API calls
+    }
+
+    // Search jobs with user preferences (legacy method for compatibility)
+    async searchJobs(userPreferences = null, searchParams = {}) {
+        return await this.searchJobsWithVariety(userPreferences, 50);
+    }
+
+    // Utility methods
+    delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    shuffleArray(array) {
+        const shuffled = [...array];
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        }
+        return shuffled;
+    }
+    
+    removeDuplicates(jobs) {
+        const seen = new Set();
+        return jobs.filter(job => {
+            const key = `${job.title}-${job.company}`.toLowerCase().replace(/\s+/g, '');
+            if (seen.has(key)) return false;
+            seen.add(key);
+            return true;
+        });
     }
 
     // Get job categories for filters
